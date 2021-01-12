@@ -24,15 +24,13 @@ void Base64_C::b64_encode(std::string& userPrivateInput)
 {
 
 	b64SLength = userPrivateInput.length();
-	std::cout << "Length of plaintext: " << b64SLength << std::endl;
 
 	b64_padding(b64SLength);
-	//std::cout << "Padding " << padding << " #iterations: " << numberOfIterations;
 	b64_enc_algorithm();
-       	std::cout << "Encoded Text " << base64String << "\n";	
+       	std::cout << "Encoded To Base 64: " << base64String << "\n";	
 
 	b64_decrypt(base64String);
-	std::cout << "Decrtyped: " << dB64 << "\n";
+	std::cout << "Decrtyped to Hex: " << dB64 << "\n";
 };
 
 void Base64_C::b64_padding(auto& inputLength)
@@ -62,14 +60,14 @@ void Base64_C::b64_enc_algorithm()
 	for(auto j = 0; j < numberOfIterations; j++)
 	{
 		auto pos = j*6;
-		//First Character[0,1]
+		//First Character[0,1] of b64
 		subString = userPrivateInput.substr(pos,2);
 		num = stoi(subString, 0, 16);
 		bufferString = static_cast<char>(BASE64CHAR[((num & HFC) >> 2)]);
 		base64String.append(bufferString);
 		
 
-		//Second Character[2,3] or [1,0]
+		//Second Character[2,3] or [1,0] 
 		if(userPrivateInput[pos+2])
 		{
 			subString = userPrivateInput.substr(pos+1,2);
@@ -144,4 +142,4 @@ void Base64_C::b64_decrypt(std::string& cryptedText)
 	}
 }
 
-Base64_C::~Base64_C(){};
+//Base64_C::~Base64_C(){};

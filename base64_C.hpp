@@ -29,7 +29,7 @@ public:
 	//Think of some Overloaded Constructors that might be useful.
 
 	void b64_encode(std::string& userPrivateData);  
-	~Base64_C();
+//	~Base64_C();
 
 
 
