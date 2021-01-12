@@ -1,3 +1,7 @@
+/*
+ * Crypt Functions Class
+ */
+
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
