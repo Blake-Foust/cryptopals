@@ -12,10 +12,13 @@
 #include <string>
 #include "base64_C.hpp"
 #include <stdlib.h>
+#include "crypto_Functions.hpp"
+#include <stdexcept>
 
 Base64_C::Base64_C(std::string& userInput)
 	:userPrivateInput(userInput)
 {
+	Crypto_Functions::Hex_Check(userPrivateInput);
 	b64_encode(userPrivateInput);
 };
 

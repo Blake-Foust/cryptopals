@@ -1,6 +1,6 @@
 /*
  * Author - Matthew Foust
- *
+ * mainCrypto.cpp
  */
 
 #include <iostream>

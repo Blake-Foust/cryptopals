@@ -1,4 +1,4 @@
-OBJS = mainCrypto.o base64_C.o crypto_Functions.o
+OBJS = mainCrypto.o crypto_Functions.o base64_C.o 
 CXX = g++
 CXXFLAGS = -Wall -std=c++17
 #LDLIBS 
@@ -6,9 +6,9 @@ CXXFLAGS = -Wall -std=c++17
 CryptProgram: $(OBJS)
 	$(CXX) $(OBJS) -o CryptProgram $(CXXFLAGS)
 
+crypto_Functions.o: crypto_Functions.hpp 
+base64_C.o: base64_C.hpp crypto_Functions.hpp
 mainCrypto.o: base64_C.hpp crypto_Functions.hpp
-base64_C.o: base64_C.hpp
-crypto_Functions.o: crypto_Functions.hpp
 
 #mainCrypto.o:	mainCrypto.cpp base64_C.hpp 
 #	$(CXX) -c mainCrypto.cpp 
