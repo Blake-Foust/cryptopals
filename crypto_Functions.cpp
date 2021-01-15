@@ -20,6 +20,30 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 	return (var1.size() == var2.size());
 }
 
+bool Crypto_Functions::hex_to_ASCII(str::string& hexString, std::string& returnString)
+{
+	std::string part;
+	std::stringstream decString;
+	char asciiChar;
+	for(size_t i = 0; i < hexString.size(); ++i)
+	{
+		part = hexString.substr(i,2);
+		asciiChar = stoull(part, nullptr, 16);
+		if(isprint(asciiChar) || isblank(asciiChar))
+		{
+			returnString += asciiChar;
+		}
+		else if(isspace(asciiChar))
+		{
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 std::string Crypto_Functions::xorHexS(std::string& hexString1, std::string& hexString2)
 {
 	auto hex_to_dec=[](char hexChar)
