@@ -2,8 +2,9 @@
 #define Base64_C_H
 #include <cstdint>
 #include <string>
+#include "crypto_Functions.hpp"
 
-class Base64_C
+class Base64_C : public Crypto_Functions
 {
 private:
 	uint8_t HFC = 252;
@@ -17,7 +18,7 @@ private:
 	inline static const std::string BASE64CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 	//Private Variables
-	std::string base64String, userPrivateInput, padding, decryptedString, dB64;
+	std::string base64String, padding, decryptedString, dB64;
 	uint8_t numberOfIterations = 0;
 	uint8_t b64SLength = 0;
 	
@@ -25,6 +26,7 @@ private:
 	void b64_enc_algorithm();
 	void b64_decrypt(std::string& cryptedText); 
 public:
+	std::string userPrivateInput;
 	Base64_C(std::string& userInput);
 	//Think of some Overloaded Constructors that might be useful.
 
@@ -35,4 +37,4 @@ public:
 
 };
 
-#endif
+#endif //Base64_C_H

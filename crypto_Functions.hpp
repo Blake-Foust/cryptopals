@@ -1,5 +1,6 @@
 #ifndef CRYPTO_FUNCTIONS_H
 #define CRYPTO_FUNCTIONS_H
+#include <string>
 
 class Crypto_Functions
 {
@@ -14,6 +15,7 @@ public:
 	bool equal_size(T1 var1, T2 var2);
 	bool hex_to_ASCII(std::string& hexString, std::string& returnString);
 	std::string xorHexS(std::string& hexString1, std::string& hexString2);
+	void Hex_Check(std::string& hexString);
 };
 
 
