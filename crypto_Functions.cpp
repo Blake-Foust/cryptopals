@@ -8,6 +8,7 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+#include <map>
 #include "crypto_Functions.hpp"
 
 Crypto_Functions::Crypto_Functions(){};
@@ -24,7 +25,15 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 	return (var1.size() == var2.size());
 }
 
-bool Crypto_Functions::hex_to_ASCII(str::string& hexString, std::string& returnString)
+//Decrypt_SINGLE_BYTE_XOR_CIPHER
+void Crypto_Functions::decrypt_SBXC(std::string hex, std::string& asciiString, 
+		std::vector<std::tuple<std::string, double, char>>& decryptionScores)
+{
+
+}
+
+
+bool Crypto_Functions::hex_to_ASCII(str::string& hexString, std::string& asciiString)
 {
 	std::string part;
 	std::stringstream decString;
@@ -35,7 +44,7 @@ bool Crypto_Functions::hex_to_ASCII(str::string& hexString, std::string& returnS
 		asciiChar = stoull(part, nullptr, 16);
 		if(isprint(asciiChar) || isblank(asciiChar))
 		{
-			returnString += asciiChar;
+			asciiString += asciiChar;
 		}
 		else if(isspace(asciiChar))
 		{
@@ -93,4 +102,5 @@ void Crypto_Functions::Hex_Check(std::string& hexString)
 		exit(0);
 	}
 };
+
 
