@@ -1,24 +1,29 @@
 #ifndef CRYPTO_FUNCTIONS_H
 #define CRYPTO_FUNCTIONS_H
 #include <string>
+#include <vector>
+#include <tuple>
+#include <map>
 
 class Crypto_Functions
 {
 private:
+	
 	std::string xorReturnString, asciiString;
 	std::vector<std::tuple<std::string, double, char>> decryptionScores;
 	std::string userValue1, userValue2;
 public:
+
 	Crypto_Functions();
 	Crypto_Functions(std::string& userInput1);
 	Crypto_Functions(std::string& userInput1,std::string& userInput2);
 	template <typename T1, typename T2>
 	bool equal_size(T1 var1, T2 var2);
-	bool hex_to_ASCII(std::string& hexString, std::string& returnString);
+	bool hex_to_ASCII(std::string& hexString);
 	std::string xorHexS(std::string& hexString1, std::string& hexString2);
 	void Hex_Check(std::string& hexString);
 	void decrypt_SBXC(std::string hex, std::string& asciiString, 
-			std::vector<std::tuple<std::string, double, char>>& decryptionScores)
+			std::vector<std::tuple<std::string, double, char>>& decryptionScores);
 	std::map<char, double> frequency_Map{
                 {' ', 13.00},
                 {'a', 8.56},

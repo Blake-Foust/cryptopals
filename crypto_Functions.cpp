@@ -9,6 +9,8 @@
 #include <algorithm>
 #include <iterator>
 #include <map>
+#include <iomanip>
+#include <cctype>
 #include "crypto_Functions.hpp"
 
 Crypto_Functions::Crypto_Functions(){};
@@ -26,22 +28,28 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 }
 
 //Decrypt_SINGLE_BYTE_XOR_CIPHER
-void Crypto_Functions::decrypt_SBXC(std::string hex, std::string& asciiString, 
+/*void Crypto_Functions::decrypt_SBXC(std::string hex, std::string& asciiString, 
 		std::vector<std::tuple<std::string, double, char>>& decryptionScores)
 {
-
+	std::stringstream bufferHexKey;
+	//check string to see if theyre global/private or in scope
+	std::string hexKeyString;
+	std::string xorString;
+	std::string hexSubString;
+	std::string checking, decryptedString;
+	for(int i = 0; i < decAsciiEnd;
 }
+*/
 
-
-bool Crypto_Functions::hex_to_ASCII(str::string& hexString, std::string& asciiString)
+//LOOK AT CCTYPE ISPRINT && ISBLANK FOR MORE INFO 
+bool Crypto_Functions::hex_to_ASCII(std::string& hexString)
 {
 	std::string part;
-	std::stringstream decString;
 	char asciiChar;
-	for(size_t i = 0; i < hexString.size(); ++i)
+	for(size_t i = 0; i < hexString.size(); i+=2)
 	{
 		part = hexString.substr(i,2);
-		asciiChar = stoull(part, nullptr, 16);
+		asciiChar = std::stoull(part, nullptr, 16);
 		if(isprint(asciiChar) || isblank(asciiChar))
 		{
 			asciiString += asciiChar;
@@ -80,6 +88,7 @@ std::string Crypto_Functions::xorHexS(std::string& hexString1, std::string& hexS
 	{
 		xorString << std::hex << (hex_to_dec(hexString1[i])^hex_to_dec(hexString2[i]));
 	}
+
 	return xorString.str();
 };
 

@@ -21,9 +21,7 @@ int main()
 	Crypto_Functions CF;
 	std::cout << "Challenge 2" << std::endl;
 	std::cout << CF.xorHexS(value1,value2) << "\n";
-
-
-
+;
 
 
 	return 0;
