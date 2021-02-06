@@ -7,10 +7,11 @@
 #include <string>
 #include "base64_C.hpp"
 #include "crypto_Functions.hpp"
+#include "AES_C.hpp"
 
 int main()
 {
-	std::cout << "Enter String  " << std::endl;
+/*	std::cout << "Enter String  " << std::endl;
 	std::string userEnters;
 	getline(std::cin, userEnters);
 	Base64_C b64(userEnters);
@@ -21,7 +22,9 @@ int main()
 	Crypto_Functions CF;
 	std::cout << "Challenge 2" << std::endl;
 	std::cout << CF.xorHexS(value1,value2) << "\n";
-;
+*/
+	AES_C a;
+	a.Mult_Inverse();	
 
 
 	return 0;
