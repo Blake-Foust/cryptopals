@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <bitset>
 #include <algorithm>
@@ -8,16 +9,35 @@
 
 AES_C::AES_C(){};
 
+AES_C::AES_C(std::string& pText)
+	: plainText(pText){};
+
 AES_C::AES_C(std::string& keyInput, std::string& pText, std::string& cText)
 	: key_AES(keyInput), plainText(pText), cipherText(cText){};
 
-void AES_C::Mult_Inverse()
+std::vector<std::string> AES_C::ByteString()
 {
+	std::vector<std::string> pTextByteVector;
+	std::string byteString;
+	for(int i = 0; i < plainText.size(); i+=2)
+	{
+		byteString = plainText.substr(i,2);
+		pTextByteVector.push_back(byteString);
+	}
+	return pTextByteVector;
+}
+
+//return a vector;
+void AES_C::Mult_Inverse(std::string& byteHexString)
+{
+
 	//x^8+x^4+x^3+x+1 galois field of 2^8
-	std::string binaryString;
-	std::cout << "Enter binary String " << std::endl;
-	std::getline(std::cin, binaryString);
-	std::bitset<9> hexBit(binaryString);
+	uint16_t hexString;
+	std::istringstream ost(byteHexString);
+	ost >> std::hex >> hexString; 
+	std::cout << hexString << " hexString " << std::endl;	
+	
+	std::bitset<9> hexBit(hexString);
 	std::bitset<9> gf{0b100011011};
 	std::bitset<9> remainder, b1,b2,quotient, buffer;
 	std::bitset<9> nullB{0b000000000};
@@ -108,4 +128,16 @@ void AES_C::Mult_Inverse()
 
 	
 	
+};
+
+
+//Put into constructor later?
+void AES_C::AES_C_Main()
+{
+	multInvVect = ByteString();
+	for(int i = 0; i < multInvVect.size(); ++i)
+	{
+		std::cout << "Mult Inverse Vector[" << i << "] = "<< multInvVect[i] << std::endl;
+		Mult_Inverse(multInvVect[i]);				
+	}
 };

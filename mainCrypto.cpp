@@ -23,8 +23,9 @@ int main()
 	std::cout << "Challenge 2" << std::endl;
 	std::cout << CF.xorHexS(value1,value2) << "\n";
 */
-	AES_C a;
-	a.Mult_Inverse();	
+	std::string hel = "12141624";
+	AES_C a(hel);
+	a.AES_C_Main();	
 
 
 	return 0;
