@@ -8,8 +8,11 @@ class AES_C
 private:
 	std::string key_AES, plainText, cipherText;
 	std::vector<std::string> multInvVect;
+	std::vector<std::bitset<9>> multInvTable;
+	std::bitset<8> affine_gf28;
 	const std::bitset<9> gf256{0b100011011};
-	uint8_t S = 0, newS, oldS = 1, quotient, remainder, T = 1, newT, oldT = 0;
+	//fixed vector for affine transformation V;
+	std::bitset<8> v_gf28{0b11000110};
 public:
 	//Constructors
 	AES_C();
@@ -18,7 +21,8 @@ public:
 
 	//Methods
 	std::vector<std::string> ByteString();
-	void Mult_Inverse(std::string& byteHexString);
+	void Affine_Transform();
+	std::vector<std::bitset<9>> Mult_Inverse(std::string& byteHexString);
 	void AES_C_Main();
 };
 

@@ -28,7 +28,7 @@ std::vector<std::string> AES_C::ByteString()
 }
 
 //return a vector;
-void AES_C::Mult_Inverse(std::string& byteHexString)
+std::vector<std::bitset<9>> AES_C::Mult_Inverse(std::string& byteHexString)
 {
 
 	//x^8+x^4+x^3+x+1 galois field of 2^8
@@ -123,13 +123,28 @@ void AES_C::Mult_Inverse(std::string& byteHexString)
 
         std::cout << "Multiplicative Inverse: " << tNEW << std::endl;
         std::cout << std::hex << tNEW.to_ulong() << std::endl;
-
- 
+	multInvTable.push_back(tNEW);
+	 
 
 	
 	
 };
 
+//{a'} = M{a} xor {v}
+void AES_C::Affine_Transform()
+{
+
+	for(int i = 0; i < multInvTable.size(); ++i)
+	{
+		std::cout << multInvTable[i] << std::endl;
+		for(int j = 0; j < multInvTable[i].size()-1; ++j)
+		{
+			std::cout << multInvTable[i][j] << std::endl;
+			affine_gf28[j] = 
+			
+		}
+	}	
+};
 
 //Put into constructor later?
 void AES_C::AES_C_Main()
@@ -140,4 +155,5 @@ void AES_C::AES_C_Main()
 		std::cout << "Mult Inverse Vector[" << i << "] = "<< multInvVect[i] << std::endl;
 		Mult_Inverse(multInvVect[i]);				
 	}
+	Affine_Transform();
 };
