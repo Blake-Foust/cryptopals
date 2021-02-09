@@ -25,7 +25,7 @@ int main()
 */
 	std::string hel = "12141624";
 	AES_C a(hel);
-	a.AES_C_Main();	
+	a.AES_C_S_BOX();	
 
 
 	return 0;

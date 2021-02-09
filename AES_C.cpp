@@ -139,15 +139,16 @@ void AES_C::Affine_Transform()
 		std::cout << multInvTable[i] << std::endl;
 		for(int j = 0; j < multInvTable[i].size()-1; ++j)
 		{
-			std::cout << multInvTable[i][j] << std::endl;
-			affine_gf28[j] = 
-			
+			affine_gf28[j] = multInvTable[i][j] ^ multInvTable[i][(j+4)%8] 
+				^ multInvTable[i][(j+5)%8] ^ multInvTable[i][(j+6)%8] 
+				^ multInvTable[i][(j+7)%8] ^ v_gf28[j];	
 		}
+		S_BOX.push_back(static_cast<int>(affine_gf28.to_ulong()));
 	}	
 };
 
 //Put into constructor later?
-void AES_C::AES_C_Main()
+void AES_C::AES_C_S_BOX()
 {
 	multInvVect = ByteString();
 	for(int i = 0; i < multInvVect.size(); ++i)
@@ -156,4 +157,8 @@ void AES_C::AES_C_Main()
 		Mult_Inverse(multInvVect[i]);				
 	}
 	Affine_Transform();
+	for(int i = 0; i < S_BOX.size(); ++i)
+	{
+		std::cout << S_BOX[i] << std::endl;
+	}
 };
