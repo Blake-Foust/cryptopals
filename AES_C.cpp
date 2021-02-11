@@ -145,6 +145,41 @@ void AES_C::Affine_Transform()
 		}
 		S_BOX.push_back(static_cast<int>(affine_gf28.to_ulong()));
 	}	
+	for(std::vector<int>::iterator it = S_BOX.begin(); it != S_BOX.end(); ++it)
+			std::cout << *it << std::endl;
+
+};
+
+//Diffusion Layer
+//using vector container even with the cost for this specific algorithm 
+void AES_C::Shift_Rows()
+{
+	
+	
+	int i = 0;
+	for(int j = 0; j < 4; ++j)
+	{
+		for(int k = 0; k < 4; ++k)
+		{
+			n_S_BOX.push_back(S_BOX[k*4 + j]);
+		}
+	}
+	for(int pl = 0; pl < n_S_BOX.size(); ++pl)
+		std::cout << n_S_BOX[pl] << std::endl;
+	
+	while(i < 16)
+	{
+
+		for(int j = 0; j<4; ++j)
+		{
+			shift_Rows_V.push_back(n_S_BOX[(i + j*5)%16]);
+		}
+		i += 4;
+	}	
+	for(int lp = 0; lp < shift_Rows_V.size(); ++lp)
+	{
+		std::cout << shift_Rows_V[lp] << std::endl;
+	}
 };
 
 //Put into constructor later?
@@ -157,8 +192,5 @@ void AES_C::AES_C_S_BOX()
 		Mult_Inverse(multInvVect[i]);				
 	}
 	Affine_Transform();
-	for(int i = 0; i < S_BOX.size(); ++i)
-	{
-		std::cout << S_BOX[i] << std::endl;
-	}
+	Shift_Rows();
 };

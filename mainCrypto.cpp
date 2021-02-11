@@ -23,7 +23,7 @@ int main()
 	std::cout << "Challenge 2" << std::endl;
 	std::cout << CF.xorHexS(value1,value2) << "\n";
 */
-	std::string hel = "12141624";
+	std::string hel = "003c6e471f4e22740e081b3154590b1a";
 	AES_C a(hel);
 	a.AES_C_S_BOX();	
 
