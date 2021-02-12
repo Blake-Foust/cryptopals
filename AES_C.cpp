@@ -145,8 +145,8 @@ void AES_C::Affine_Transform()
 		}
 		S_BOX.push_back(static_cast<int>(affine_gf28.to_ulong()));
 	}	
-	for(std::vector<int>::iterator it = S_BOX.begin(); it != S_BOX.end(); ++it)
-			std::cout << *it << std::endl;
+	//for(std::vector<int>::iterator it = S_BOX.begin(); it != S_BOX.end(); ++it)
+	//		std::cout << *it << std::endl;
 
 };
 
@@ -167,15 +167,36 @@ void AES_C::Shift_Rows()
 	for(int pl = 0; pl < n_S_BOX.size(); ++pl)
 		std::cout << n_S_BOX[pl] << std::endl;
 	
-	while(i < 16)
+	std::cout << "AES SHIFT: \n";
+	int b = 0;
+	int bd = 0;
+	int j = 4;
+	int buffer = 0;
+	while(b < 16)
 	{
-
-		for(int j = 0; j<4; ++j)
+		while(j > 0)
 		{
-			shift_Rows_V.push_back(n_S_BOX[(i + j*5)%16]);
+			std::cout << j << std::endl;
+			std::cout << " i " << b << " j \n";
+			shift_Rows_V.push_back(S_BOX[b + bd]);
+			b += 1;
+			--j;
+			
 		}
-		i += 4;
-	}	
+		buffer = bd;
+		while(0 < buffer)
+		{
+			std::cout << " i " << b << " buffer \n";
+			shift_Rows_V.push_back(S_BOX[b-j]);
+			b += 1;
+			--buffer;
+		}
+		bd +=1;
+		std::cout << bd << " bd " << std::endl;
+		j = 4 - bd;
+	}
+	
+		
 	for(int lp = 0; lp < shift_Rows_V.size(); ++lp)
 	{
 		std::cout << shift_Rows_V[lp] << std::endl;
