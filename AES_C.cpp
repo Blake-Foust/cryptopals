@@ -151,12 +151,11 @@ void AES_C::Affine_Transform()
 };
 
 //Diffusion Layer
-//using vector container even with the cost for this specific algorithm 
+//using vector container for this specific algorithm 
 void AES_C::Shift_Rows()
 {
 	
 	
-	int i = 0;
 	for(int j = 0; j < 4; ++j)
 	{
 		for(int k = 0; k < 4; ++k)
@@ -168,35 +167,16 @@ void AES_C::Shift_Rows()
 		std::cout << n_S_BOX[pl] << std::endl;
 	
 	std::cout << "AES SHIFT: \n";
-	int b = 0;
-	int bd = 0;
-	int j = 4;
-	int buffer = 0;
-	while(b < 16)
-	{
-		while(j > 0)
-		{
-			std::cout << j << std::endl;
-			std::cout << " i " << b << " j \n";
-			shift_Rows_V.push_back(S_BOX[b + bd]);
-			b += 1;
-			--j;
-			
-		}
-		buffer = bd;
-		while(0 < buffer)
-		{
-			std::cout << " i " << b << " buffer \n";
-			shift_Rows_V.push_back(S_BOX[b-j]);
-			b += 1;
-			--buffer;
-		}
-		bd +=1;
-		std::cout << bd << " bd " << std::endl;
-		j = 4 - bd;
-	}
 	
-		
+	int five = 5;
+	for(int i = 0; i < 16; i += 4)
+	{
+		for(int t = 0; t < 4; ++t)
+		{
+			shift_Rows_V.push_back(n_S_BOX[(i + five*t)%16]);
+		}
+	}	
+	
 	for(int lp = 0; lp < shift_Rows_V.size(); ++lp)
 	{
 		std::cout << shift_Rows_V[lp] << std::endl;
