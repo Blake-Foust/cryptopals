@@ -23,6 +23,8 @@ public:
 
 	//Methods
 	std::vector<std::string> ByteString();
+	void KeyAddition();
+	void KeySchedule();
 	void Affine_Transform();
 	std::vector<std::bitset<9>> Mult_Inverse(std::string& byteHexString);
 	void Shift_Rows();

@@ -27,6 +27,10 @@ std::vector<std::string> AES_C::ByteString()
 	return pTextByteVector;
 }
 
+void AES_C::KeyAddition()
+{
+};
+
 //return a vector;
 std::vector<std::bitset<9>> AES_C::Mult_Inverse(std::string& byteHexString)
 {
@@ -182,6 +186,8 @@ void AES_C::Shift_Rows()
 		std::cout << shift_Rows_V[lp] << std::endl;
 	}
 };
+
+
 
 //Put into constructor later?
 void AES_C::AES_C_S_BOX()
