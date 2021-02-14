@@ -27,7 +27,17 @@ std::vector<std::string> AES_C::ByteString()
 	return pTextByteVector;
 }
 
+
+//Function for KeySchedule
+void g()
+{
+};
+
 void AES_C::KeyAddition()
+{
+};
+
+void AES_C::KeySchedule()
 {
 };
 

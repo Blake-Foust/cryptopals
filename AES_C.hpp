@@ -23,6 +23,7 @@ public:
 
 	//Methods
 	std::vector<std::string> ByteString();
+	void g();
 	void KeyAddition();
 	void KeySchedule();
 	void Affine_Transform();
