@@ -9,6 +9,12 @@
 #include "crypto_Functions.hpp"
 #include "AES_C.hpp"
 
+//Make multiple structs for AES - 128/196/256
+struct AES_128_ECB{
+	const std::bitset<8> v_gf28(0b01100011};
+	std::bitset<8> affine_gf28;
+};
+
 int main()
 {
 /*	std::cout << "Enter String  " << std::endl;
