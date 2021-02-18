@@ -16,14 +16,16 @@ private:
 	std::vector<int> S_BOX, n_S_BOX;
 	std::vector<int> shift_Rows_V;
 public:
+	std::vector<std::string> w;
 	//Constructors
 	AES_C();
+	AES_C(std::string& keyInput, std::string& pText);
 	AES_C(std::string& keyInput);
 	AES_C(std::string& keyInput, std::string& pText, std::string& cText);
 
 	//Methods
 	std::vector<std::string> ByteString();
-	void g();
+	void G();
 	void KeyAddition();
 	void KeySchedule();
 	void Affine_Transform();

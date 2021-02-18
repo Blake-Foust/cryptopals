@@ -10,10 +10,10 @@
 #include "AES_C.hpp"
 
 //Make multiple structs for AES - 128/196/256
-struct AES_128_ECB{
+/*struct AES_128_ECB{
 	const std::bitset<8> v_gf28(0b01100011};
 	std::bitset<8> affine_gf28;
-};
+};*/
 
 int main()
 {
@@ -29,8 +29,9 @@ int main()
 	std::cout << "Challenge 2" << std::endl;
 	std::cout << CF.xorHexS(value1,value2) << "\n";
 */
-	std::string hel = "003c6e471f4e22740e081b3154590b1a";
-	AES_C a(hel);
+	std::string plainText = "54776f204f6e65204e696e652054776f";
+	std::string userKey = "5468617473206d79204b756e67204675";
+	AES_C a(userKey, plainText);
 	a.AES_C_S_BOX();	
 
 

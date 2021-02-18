@@ -12,6 +12,10 @@ AES_C::AES_C(){};
 AES_C::AES_C(std::string& pText)
 	: plainText(pText){};
 
+AES_C::AES_C(std::string& keyInput, std::string& pText)
+	: plainText(pText), key_AES(keyInput){};
+
+
 AES_C::AES_C(std::string& keyInput, std::string& pText, std::string& cText)
 	: key_AES(keyInput), plainText(pText), cipherText(cText){};
 
@@ -29,16 +33,42 @@ std::vector<std::string> AES_C::ByteString()
 
 
 //Function for KeySchedule
-void g()
+void AES_C::G()
 {
+	int i = 3;
+	std::string w_buffer;	
+	for(int j = 6; j = 0; j -= 2)
+	{
+		w_buffer[(j/2 - 1)%4] = w[i].substr(j,2);
+	}
 };
 
+//mabye make a template for key Schedule
 void AES_C::KeyAddition()
 {
 };
 
 void AES_C::KeySchedule()
 {
+	int round_n = 0;
+	std::string w_1, w_2, w_3, w_4;
+	////////////////////initialize round zero
+
+	for(int i = 0; i < key_AES.size()+1; i += 8)
+		w.push_back(key_AES.substr(i, 8));
+	/////////////////////////////////////////
+	G();	
+		
+
+
+
+
+
+	while(round_n < 10)
+	{
+
+		round_n++;
+	}
 };
 
 //return a vector;
@@ -139,7 +169,7 @@ std::vector<std::bitset<9>> AES_C::Mult_Inverse(std::string& byteHexString)
         std::cout << std::hex << tNEW.to_ulong() << std::endl;
 	multInvTable.push_back(tNEW);
 	 
-
+	return multInvTable;
 	
 	
 };
@@ -210,4 +240,5 @@ void AES_C::AES_C_S_BOX()
 	}
 	Affine_Transform();
 	Shift_Rows();
+	KeySchedule();
 };
