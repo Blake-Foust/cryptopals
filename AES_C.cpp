@@ -32,15 +32,22 @@ std::vector<std::string> AES_C::ByteString()
 }
 
 
-//Function for KeySchedule
+//Function for KeySchedule create a vector<vector<std::string>>
 void AES_C::G()
 {
 	int i = 3;
-	std::string w_buffer;	
-	for(int j = 6; j = 0; j -= 2)
+	std::string w_buffer = w[i];
+	w[i].clear();
+
+	//SHIFT ROW-------------
+	for(int j = 2; j <= 6; j +=2 )
 	{
-		w_buffer[(j/2 - 1)%4] = w[i].substr(j,2);
+		w[i].append(w_buffer.substr(j,2));
 	}
+	w[i].append(w_buffer.substr(0,2));
+	//----------------------
+	//std::cout << w[i] << std::endl;
+	i += 3;
 };
 
 //mabye make a template for key Schedule
