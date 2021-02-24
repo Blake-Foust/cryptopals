@@ -32,7 +32,7 @@ std::vector<std::string> AES_C::ByteString()
 }
 
 
-//Function for KeySchedule create a vector<vector<std::string>>
+//Function for KeySchedule 
 void AES_C::G()
 {
 	int i = 3;
@@ -47,6 +47,9 @@ void AES_C::G()
 	w[i].append(w_buffer.substr(0,2));
 	//----------------------
 	//std::cout << w[i] << std::endl;
+	//S-box w[i]
+	Mult_Inverse(w[i]);
+
 	i += 3;
 };
 
@@ -248,4 +251,5 @@ void AES_C::AES_C_S_BOX()
 	Affine_Transform();
 	Shift_Rows();
 	KeySchedule();
+	multInvVect.clear();
 };
