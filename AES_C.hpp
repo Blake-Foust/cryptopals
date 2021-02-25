@@ -13,8 +13,8 @@ private:
 	const std::bitset<9> gf256{0b100011011};
 	//fixed vector for affine transformation V;
 	std::bitset<8> v_gf28{0b01100011};
-	std::vector<int> S_BOX, n_S_BOX;
-	std::vector<int> shift_Rows_V;
+	std::vector<int> S_BOX;
+	int g_index;
 public:
 	std::vector<std::string> w;
 	//Constructors

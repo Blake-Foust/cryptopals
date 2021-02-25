@@ -35,7 +35,7 @@ std::vector<std::string> AES_C::ByteString()
 //Function for KeySchedule 
 void AES_C::G()
 {
-	int i = 3;
+	g_index = 3;
 	std::string w_buffer = w[i];
 	w[i].clear();
 
@@ -50,7 +50,7 @@ void AES_C::G()
 	//S-box w[i]
 	Mult_Inverse(w[i]);
 
-	i += 3;
+	g_index += 4;
 };
 
 //mabye make a template for key Schedule
@@ -70,19 +70,10 @@ void AES_C::KeySchedule()
 	G();	
 		
 
-
-
-
-
-	while(round_n < 10)
-	{
-
-		round_n++;
-	}
 };
 
 //return a vector;
-std::vector<std::bitset<9>> AES_C::Mult_Inverse(std::string& byteHexString)
+void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>& returnVector)
 {
 
 	//x^8+x^4+x^3+x+1 galois field of 2^8
@@ -177,15 +168,15 @@ std::vector<std::bitset<9>> AES_C::Mult_Inverse(std::string& byteHexString)
 
         std::cout << "Multiplicative Inverse: " << tNEW << std::endl;
         std::cout << std::hex << tNEW.to_ulong() << std::endl;
-	multInvTable.push_back(tNEW);
+	returnVector.push_back(tNEW);
 	 
-	return multInvTable;
+	return returnVector;
 	
 	
 };
 
 //{a'} = M{a} xor {v}
-void AES_C::Affine_Transform()
+void AES_C::Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vector<int>& s_BoxVector)
 {
 
 	for(int i = 0; i < multInvTable.size(); ++i)
@@ -197,7 +188,7 @@ void AES_C::Affine_Transform()
 				^ multInvTable[i][(j+5)%8] ^ multInvTable[i][(j+6)%8] 
 				^ multInvTable[i][(j+7)%8] ^ v_gf28[j];	
 		}
-		S_BOX.push_back(static_cast<int>(affine_gf28.to_ulong()));
+		s_BoxVector.push_back(static_cast<int>(affine_gf28.to_ulong()));
 	}	
 	//for(std::vector<int>::iterator it = S_BOX.begin(); it != S_BOX.end(); ++it)
 	//		std::cout << *it << std::endl;
@@ -206,15 +197,15 @@ void AES_C::Affine_Transform()
 
 //Diffusion Layer
 //using vector container for this specific algorithm 
-void AES_C::Shift_Rows()
+void AES_C::Shift_Rows(std::vector<int>& s_BoxVector, std::vector<int>& shift_Rows_V)
 {
 	
-	
+	std::vector<int> n_S_BOX;
 	for(int j = 0; j < 4; ++j)
 	{
 		for(int k = 0; k < 4; ++k)
 		{
-			n_S_BOX.push_back(S_BOX[k*4 + j]);
+			n_S_BOX.push_back(s_BoxVector[k*4 + j]);
 		}
 	}
 	for(int pl = 0; pl < n_S_BOX.size(); ++pl)
@@ -253,3 +244,26 @@ void AES_C::AES_C_S_BOX()
 	KeySchedule();
 	multInvVect.clear();
 };
+/*
+void AES_C::Initial_Round()
+{
+        for(int i = 0; i < key_AES.size()+1; i += 8)
+                w.push_back(key_AES.substr(i, 8));
+};
+
+void AES_C::Main_Rounds()
+{
+
+	
+};
+
+void AES_C::Final_Round()
+{
+
+};
+
+void AES_C::AES_ENCRYPT()
+{
+
+
+};*/
