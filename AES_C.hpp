@@ -14,7 +14,7 @@ private:
 	//fixed vector for affine transformation V;
 	std::bitset<8> v_gf28{0b01100011};
 	std::vector<int> S_BOX;
-	int g_index;
+	int g_index = 3;
 public:
 	std::vector<std::string> w;
 	//Constructors
@@ -24,14 +24,17 @@ public:
 	AES_C(std::string& keyInput, std::string& pText, std::string& cText);
 
 	//Methods
-	std::vector<std::string> ByteString();
+	void WordVector(std::vector<std::string>& keyWordVector);
+	std::vector<std::string> PlainByteStringV();
+	std::vector<std::string> KeyByteStringV();
 	void G();
 	void KeyAddition();
 	void KeySchedule();
-	void Affine_Transform();
-	std::vector<std::bitset<9>> Mult_Inverse(std::string& byteHexString);
-	void Shift_Rows();
+	void Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vector<int>& s_BoxVector);
+	void Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>& returnVector);
+	void Shift_Rows(std::vector<int>& s_BoxVector, std::vector<int>& shift_Rows_V);
 	void AES_C_S_BOX();
+	void PracticeRun();
 };
 
 #endif //AES_C_H

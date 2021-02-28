@@ -32,7 +32,7 @@ int main()
 	std::string plainText = "54776f204f6e65204e696e652054776f";
 	std::string userKey = "5468617473206d79204b756e67204675";
 	AES_C a(userKey, plainText);
-	a.AES_C_S_BOX();	
+	a.PracticeRun();	
 
 
 	return 0;
