@@ -31,23 +31,27 @@ std::vector<std::string> AES_C::PlainByteStringV()
 	return pTextByteVector;
 };
 
-std::vector<std::string> AES_C::KeyByteStringV()
+std::vector<std::string> AES_C::KeyByteStringV(std::string& inputVector)
 {
 	std::vector<std::string> kTextByteVector;
 	std::string byteString;
-	for(int i = 0; i < key_AES.size(); i += 2)
+	for(int i = 0; i < inputVector.size(); i += 2)
 	{
-		byteString = key_AES.substr(i, 2);
+		byteString = inputVector.substr(i, 2);
 		kTextByteVector.push_back(byteString);
 	}
 	return kTextByteVector;
 };
 
-//Function for KeySchedule 
-void AES_C::G(std::vector<std::string> wordVector)
+//Function G for KeySchedule 
+void AES_C::G(std::vector<std::string>& wordVector)
 {
+	std::cout << "KeySchedule \n";
 	std::string w_buffer = wordVector[g_index];
-	wordVector[g_index].clear()
+	std::vector<std::bitset<9>> vectorGBuffer;
+	std::vector<std::string> stringVector;
+	std::vector<int> s_BoxVector;
+	wordVector[g_index].clear();
 
 	//SHIFT ROW-------------
 	for(int j = 2; j <= 6; j +=2 )
@@ -56,9 +60,18 @@ void AES_C::G(std::vector<std::string> wordVector)
 	}
 	wordVector[g_index].append(w_buffer.substr(0,2));
 	//----------------------
-	//std::cout << wordVector[i] << std::endl;
-	//S-box wordVector[i]
-	//Mult_Inverse(wordVector[i]);
+	std::cout << wordVector[g_index] << std::endl;
+	stringVector = KeyByteStringV(wordVector[g_index]);
+	int count = 0;
+	for(auto& x : stringVector)
+	{
+		Mult_Inverse(x,vectorGBuffer);
+	}
+	Affine_Transform(vectorGBuffer, s_BoxVector);
+	for(int i = 0; i < s_BoxVector.size(); ++i)
+	{
+		std::cout << s_BoxVector[i] << std::endl;
+	}
 
 	g_index += 4;
 };
@@ -95,6 +108,7 @@ void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>
 {
 
 	//x^8+x^4+x^3+x+1 galois field of 2^8
+	std::cout << byteHexString << std::endl;
 	uint16_t hexString;
 	std::istringstream ost(byteHexString);
 	ost >> std::hex >> hexString; 

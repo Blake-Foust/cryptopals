@@ -26,8 +26,8 @@ public:
 	//Methods
 	void WordVector(std::vector<std::string>& keyWordVector);
 	std::vector<std::string> PlainByteStringV();
-	std::vector<std::string> KeyByteStringV();
-	void G();
+	std::vector<std::string> KeyByteStringV(std::string& inputVector);
+	void G(std::vector<std::string>& wordVector);
 	void KeyAddition();
 	void KeySchedule();
 	void Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vector<int>& s_BoxVector);
