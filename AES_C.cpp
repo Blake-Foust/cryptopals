@@ -5,7 +5,9 @@
 #include <algorithm>
 #include <string>
 #include <cstddef>
+#include <list>
 #include "AES_C.hpp"
+
 
 AES_C::AES_C(){};
 
@@ -18,6 +20,7 @@ AES_C::AES_C(std::string& keyInput, std::string& pText)
 
 AES_C::AES_C(std::string& keyInput, std::string& pText, std::string& cText)
 	: key_AES(keyInput), plainText(pText), cipherText(cText){};
+
 
 std::vector<std::string> AES_C::PlainByteStringV()
 {
@@ -52,7 +55,7 @@ void AES_C::G(std::vector<std::string>& wordVector)
 	std::vector<std::string> stringVector;
 	std::vector<int> s_BoxVector;
 	wordVector[g_index].clear();
-
+	int index = 0;
 	//SHIFT ROW-------------
 	for(int j = 2; j <= 6; j +=2 )
 	{
@@ -72,13 +75,25 @@ void AES_C::G(std::vector<std::string>& wordVector)
 	{
 		std::cout << s_BoxVector[i] << std::endl;
 	}
-
+	KeyAddition(s_BoxVector, index);
 	g_index += 4;
 };
 
-//mabye make a template for key Schedule
-void AES_C::KeyAddition()
+//add round key constant
+void AES_C::KeyAddition(std::vector<int>& s_BoxVector,int& index)
 {
+	std::vector<int> sboxBuffer = s_BoxVector;
+	uint8_t xorValue = round_Constants[0] ^ sboxBuffer[0];
+	s_BoxVector.clear();
+	s_BoxVector.push_back(xorValue);
+	for(int i = 1; i < sboxBuffer.size(); ++i)
+	{
+		s_BoxVector.push_back(sboxBuffer[i]);
+	}
+	for(auto& x : s_BoxVector)
+		std::cout << x << std::endl;
+
+	
 };
 
 //groups 32 into 4 groups of 8
@@ -91,6 +106,8 @@ void AES_C::WordVector(std::vector<std::string>& keyWordVector)
 		std::cout << x << std::endl;
 };
 
+
+
 void AES_C::KeySchedule()
 {
 	int key_Whitening_IDX = 0;
@@ -98,8 +115,7 @@ void AES_C::KeySchedule()
 	std::vector<std::string> w_String_Buffer;
 	std::vector<std::string> w_String_Vector;
 	WordVector(w_String_Vector);
-	G(w_String_Vector);	
-		
+	G(w_String_Vector);		
 
 };
 
