@@ -28,6 +28,7 @@ public:
 	//Methods
 	void WordVector(std::vector<std::string>& keyWordVector);
 	std::list<uint8_t> RCON();
+	void Left_Shift(std::vector<std::string>& wordVector);
 	void ADD_ROUND_CON(std::vector<int>& s_BoxVector);
 	std::vector<std::string> PlainByteStringV();
 	std::vector<std::string> KeyByteStringV(std::string& inputVector);

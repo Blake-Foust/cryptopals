@@ -46,22 +46,34 @@ std::vector<std::string> AES_C::KeyByteStringV(std::string& inputVector)
 	return kTextByteVector;
 };
 
+void AES_C::Left_Shift(std::vector<std::string>& wordVector)
+{
+	std::string w_buffer = wordVector[g_index];
+	wordVector[g_index].clear();
+	for(int i = 2; i <= 6; i += 2)
+	{
+		wordVector[g_index].append(w_buffer.substr(i,2));
+	}
+	wordVector[g_index].append(w_buffer.substr(0,2));
+};
+
 //Function G for KeySchedule 
 void AES_C::G(std::vector<std::string>& wordVector)
 {
 	std::cout << "KeySchedule \n";
-	std::string w_buffer = wordVector[g_index];
+	//std::string w_buffer = wordVector[g_index];
 	std::vector<std::bitset<9>> vectorGBuffer;
 	std::vector<std::string> stringVector;
 	std::vector<int> s_BoxVector;
-	wordVector[g_index].clear();
+	//wordVector[g_index].clear();
 	int index = 0;
 	//SHIFT ROW-------------
-	for(int j = 2; j <= 6; j +=2 )
+	/*for(int j = 2; j <= 6; j +=2 )
 	{
 		wordVector[g_index].append(w_buffer.substr(j,2));
-	}
-	wordVector[g_index].append(w_buffer.substr(0,2));
+	}*/
+	Left_Shift(wordVector);
+	//wordVector[g_index].append(w_buffer.substr(0,2));
 	//----------------------
 	std::cout << wordVector[g_index] << std::endl;
 	stringVector = KeyByteStringV(wordVector[g_index]);
@@ -71,10 +83,10 @@ void AES_C::G(std::vector<std::string>& wordVector)
 		Mult_Inverse(x,vectorGBuffer);
 	}
 	Affine_Transform(vectorGBuffer, s_BoxVector);
-	for(int i = 0; i < s_BoxVector.size(); ++i)
+	/*for(int i = 0; i < s_BoxVector.size(); ++i)
 	{
 		std::cout << s_BoxVector[i] << std::endl;
-	}
+	}*/
 	KeyAddition(s_BoxVector, index);
 	g_index += 4;
 };
@@ -90,9 +102,10 @@ void AES_C::KeyAddition(std::vector<int>& s_BoxVector,int& index)
 	{
 		s_BoxVector.push_back(sboxBuffer[i]);
 	}
+	
 	for(auto& x : s_BoxVector)
 		std::cout << x << std::endl;
-
+	
 	
 };
 
@@ -101,9 +114,10 @@ void AES_C::WordVector(std::vector<std::string>& keyWordVector)
 {
 	for(int i = 0; i < key_AES.size(); i += 8)
 		keyWordVector.push_back(key_AES.substr(i,8));
-		
+	/*
 	for(auto& x : keyWordVector)
 		std::cout << x << std::endl;
+	*/
 };
 
 
