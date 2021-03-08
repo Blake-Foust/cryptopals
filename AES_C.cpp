@@ -8,7 +8,7 @@
 #include <list>
 #include "AES_C.hpp"
 
-
+//Constructors
 AES_C::AES_C(){};
 
 AES_C::AES_C(std::string& pText)
@@ -20,8 +20,10 @@ AES_C::AES_C(std::string& keyInput, std::string& pText)
 
 AES_C::AES_C(std::string& keyInput, std::string& pText, std::string& cText)
 	: key_AES(keyInput), plainText(pText), cipherText(cText){};
+//--------------------------------------------------------
+//
 
-
+//Seperates string into vectors of strings, length 2 for plaintext
 std::vector<std::string> AES_C::PlainByteStringV()
 {
 	std::vector<std::string> pTextByteVector;
@@ -34,6 +36,7 @@ std::vector<std::string> AES_C::PlainByteStringV()
 	return pTextByteVector;
 };
 
+//Seperates string into vectors of strings, length 2 for keyText
 std::vector<std::string> AES_C::KeyByteStringV(std::string& inputVector)
 {
 	std::vector<std::string> kTextByteVector;
@@ -45,7 +48,9 @@ std::vector<std::string> AES_C::KeyByteStringV(std::string& inputVector)
 	}
 	return kTextByteVector;
 };
+//--------------------------------------------------------
 
+//Left shift vector string once, for G function
 void AES_C::Left_Shift(std::vector<std::string>& wordVector)
 {
 	std::string w_buffer = wordVector[g_index];
@@ -57,8 +62,12 @@ void AES_C::Left_Shift(std::vector<std::string>& wordVector)
 	wordVector[g_index].append(w_buffer.substr(0,2));
 };
 
-//Function G for KeySchedule 
-void AES_C::G(std::vector<std::string>& wordVector)
+//Function G for KeySchedule, 
+//LEFT SHIFT
+//Mult_Inverse for S_Box
+//Affine_Transform for S_Box
+//Key_Addition
+std::vector<int> AES_C::G(std::vector<std::string>& wordVector)
 {
 	std::cout << "KeySchedule \n";
 	//std::string w_buffer = wordVector[g_index];
@@ -66,7 +75,6 @@ void AES_C::G(std::vector<std::string>& wordVector)
 	std::vector<std::string> stringVector;
 	std::vector<int> s_BoxVector;
 	//wordVector[g_index].clear();
-	int index = 0;
 	//SHIFT ROW-------------
 	/*for(int j = 2; j <= 6; j +=2 )
 	{
@@ -88,14 +96,16 @@ void AES_C::G(std::vector<std::string>& wordVector)
 		std::cout << s_BoxVector[i] << std::endl;
 	}*/
 	KeyAddition(s_BoxVector, index);
+	index++;
 	g_index += 4;
+	return s_BoxVector;
 };
 
 //add round key constant
 void AES_C::KeyAddition(std::vector<int>& s_BoxVector,int& index)
 {
 	std::vector<int> sboxBuffer = s_BoxVector;
-	uint8_t xorValue = round_Constants[0] ^ sboxBuffer[0];
+	uint8_t xorValue = round_Constants[index] ^ sboxBuffer[0];
 	s_BoxVector.clear();
 	s_BoxVector.push_back(xorValue);
 	for(int i = 1; i < sboxBuffer.size(); ++i)
@@ -120,20 +130,39 @@ void AES_C::WordVector(std::vector<std::string>& keyWordVector)
 	*/
 };
 
+//Initial_Key Round 0
+void AES_C::Initial_Key(std::vector<std::string>& w_String_Vector)
+{
+	std::cout << "Initial Key: \n";
+	for(auto& x : w_String_Vector)
+		std::cout << x << std::endl;
+};
 
+//Key Rounds 1-11
+void AES_C::Key_Rounds(std::vector<std::string>& w_String_Vector, 
+		std::vector<std::string>& w_Rounds_Vector)
+{
+	for(int i = 0; i <= 10; ++i)
+	{
+		w_Rounds_Vector +=(std::to_string(std::stoi(w_String_Vector[4*i - 4], 0, 16) ^ G(w_String_Vector))); 
+	}
+};
 
+//The key schedule which creates all rounds of keys 0-11
 void AES_C::KeySchedule()
 {
 	int key_Whitening_IDX = 0;
 	int round_n = 0;
 	std::vector<std::string> w_String_Buffer;
-	std::vector<std::string> w_String_Vector;
+	std::vector<std::string> w_String_Vector, w_Rounds_Vector;
 	WordVector(w_String_Vector);
-	G(w_String_Vector);		
+	Initial_Key(w_String_Vector);	
+	Key_Rounds(w_String_Vector, w_Rounds_Vector);
+	//G(w_String_Vector);		
 
 };
 
-//return a vector;
+//First level of the S_BOX, only takes 1 byte, two chars
 void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>& returnVector)
 {
 
@@ -237,7 +266,7 @@ void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>
 	
 };
 
-//{a'} = M{a} xor {v}
+//{a'} = M{a} xor {v}, second part of the S_BOX
 void AES_C::Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vector<int>& s_BoxVector)
 {
 

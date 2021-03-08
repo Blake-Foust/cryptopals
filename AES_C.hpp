@@ -17,6 +17,7 @@ private:
 	std::bitset<8> v_gf28{0b01100011};
 	std::vector<int> S_BOX;
 	int g_index = 3;
+	int index = 0;
 public:
 	std::vector<std::string> w;
 	//Constructors
@@ -26,13 +27,15 @@ public:
 	AES_C(std::string& keyInput, std::string& pText, std::string& cText);
 
 	//Methods
+	void Initial_Key(std::vector<std::string>& w_String_Vector);
+	void Key_Rounds(std::vector<std::string>& w_String_Vector, std::vector<std::string>& w_Rounds_Vector);
 	void WordVector(std::vector<std::string>& keyWordVector);
 	std::list<uint8_t> RCON();
 	void Left_Shift(std::vector<std::string>& wordVector);
 	void ADD_ROUND_CON(std::vector<int>& s_BoxVector);
 	std::vector<std::string> PlainByteStringV();
 	std::vector<std::string> KeyByteStringV(std::string& inputVector);
-	void G(std::vector<std::string>& wordVector);
+	std::vector<int> G(std::vector<std::string>& wordVector);
 	void KeyAddition(std::vector<int>& s_BoxVector, int& index);
 	void KeySchedule();
 	void Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vector<int>& s_BoxVector);
