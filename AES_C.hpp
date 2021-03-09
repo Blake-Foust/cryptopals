@@ -28,7 +28,7 @@ public:
 
 	//Methods
 	void Initial_Key(std::vector<std::string>& w_String_Vector);
-	void Key_Rounds(std::vector<std::string>& w_String_Vector, std::vector<std::string>& w_Rounds_Vector);
+	void Key_Rounds(std::vector<std::string>& w_String_Vector, std::vector<int>& w_Rounds_Vector);
 	void WordVector(std::vector<std::string>& keyWordVector);
 	std::list<uint8_t> RCON();
 	void Left_Shift(std::vector<std::string>& wordVector);

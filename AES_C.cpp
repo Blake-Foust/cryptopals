@@ -74,12 +74,8 @@ std::vector<int> AES_C::G(std::vector<std::string>& wordVector)
 	std::vector<std::bitset<9>> vectorGBuffer;
 	std::vector<std::string> stringVector;
 	std::vector<int> s_BoxVector;
-	//wordVector[g_index].clear();
+
 	//SHIFT ROW-------------
-	/*for(int j = 2; j <= 6; j +=2 )
-	{
-		wordVector[g_index].append(w_buffer.substr(j,2));
-	}*/
 	Left_Shift(wordVector);
 	//wordVector[g_index].append(w_buffer.substr(0,2));
 	//----------------------
@@ -140,12 +136,31 @@ void AES_C::Initial_Key(std::vector<std::string>& w_String_Vector)
 
 //Key Rounds 1-11
 void AES_C::Key_Rounds(std::vector<std::string>& w_String_Vector, 
-		std::vector<std::string>& w_Rounds_Vector)
+		std::vector<int>& w_Rounds_Vector)
 {
+	std::cout << "Round" << std::endl;
+	std::vector<int> gReturn = G(w_String_Vector);
+	std::stringstream ss;
+	std::string wStringBuffer;
+	unsigned int x;
+	uint8_t xorBuffer;
+	for(int i = 0; i < gReturn.size(); ++i)
+	{
+		ss << std::hex << w_String_Vector[0].substr(i*2,2);
+		ss >> x;
+		std::cout << "ROUND HERE" << std::endl;
+		xorBuffer = (x ^ gReturn[i]);
+		wStringBuffer.append(std::to_string(xorBuffer));
+		ss.clear();
+	}
+
+	
+
+	/*
 	for(int i = 0; i <= 10; ++i)
 	{
 		w_Rounds_Vector +=(std::to_string(std::stoi(w_String_Vector[4*i - 4], 0, 16) ^ G(w_String_Vector))); 
-	}
+	}*/
 };
 
 //The key schedule which creates all rounds of keys 0-11
@@ -154,7 +169,8 @@ void AES_C::KeySchedule()
 	int key_Whitening_IDX = 0;
 	int round_n = 0;
 	std::vector<std::string> w_String_Buffer;
-	std::vector<std::string> w_String_Vector, w_Rounds_Vector;
+	std::vector<std::string> w_String_Vector;
+	std::vector<int> w_Rounds_Vector;
 	WordVector(w_String_Vector);
 	Initial_Key(w_String_Vector);	
 	Key_Rounds(w_String_Vector, w_Rounds_Vector);
