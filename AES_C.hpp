@@ -27,11 +27,12 @@ public:
 	AES_C(std::string& keyInput, std::string& pText, std::string& cText);
 
 	//Methods
+	std::vector<int> StringV_To_IntV(std::vector<std::string>& w_String_Vector);
 	void Initial_Key(std::vector<std::string>& w_String_Vector);
 	void Key_Rounds(std::vector<std::string>& w_String_Vector, std::vector<int>& w_Rounds_Vector);
 	void WordVector(std::vector<std::string>& keyWordVector);
 	std::list<uint8_t> RCON();
-	void Left_Shift(std::vector<std::string>& wordVector);
+	std::vector<std::string> Left_Shift(std::vector<std::string>& wordVector);
 	void ADD_ROUND_CON(std::vector<int>& s_BoxVector);
 	std::vector<std::string> PlainByteStringV();
 	std::vector<std::string> KeyByteStringV(std::string& inputVector);

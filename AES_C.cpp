@@ -51,15 +51,17 @@ std::vector<std::string> AES_C::KeyByteStringV(std::string& inputVector)
 //--------------------------------------------------------
 
 //Left shift vector string once, for G function
-void AES_C::Left_Shift(std::vector<std::string>& wordVector)
+std::vector<std::string> AES_C::Left_Shift(std::vector<std::string>& wordVector)
 {
 	std::string w_buffer = wordVector[g_index];
-	wordVector[g_index].clear();
+	std::vector<std::string> leftShiftReturn = wordVector;
+	leftShiftReturn[g_index].clear();
 	for(int i = 2; i <= 6; i += 2)
 	{
-		wordVector[g_index].append(w_buffer.substr(i,2));
+		leftShiftReturn[g_index].append(w_buffer.substr(i,2));
 	}
-	wordVector[g_index].append(w_buffer.substr(0,2));
+	leftShiftReturn[g_index].append(w_buffer.substr(0,2));
+	return leftShiftReturn;
 };
 
 //Function G for KeySchedule, 
@@ -74,13 +76,14 @@ std::vector<int> AES_C::G(std::vector<std::string>& wordVector)
 	std::vector<std::bitset<9>> vectorGBuffer;
 	std::vector<std::string> stringVector;
 	std::vector<int> s_BoxVector;
+	std::vector<std::string> lsVectString;
 
 	//SHIFT ROW-------------
-	Left_Shift(wordVector);
+	lsVectString = Left_Shift(wordVector);
 	//wordVector[g_index].append(w_buffer.substr(0,2));
 	//----------------------
-	std::cout << wordVector[g_index] << std::endl;
-	stringVector = KeyByteStringV(wordVector[g_index]);
+	std::cout << lsVectString[g_index] << std::endl;
+	stringVector = KeyByteStringV(lsVectString[g_index]);
 	int count = 0;
 	for(auto& x : stringVector)
 	{
@@ -108,10 +111,10 @@ void AES_C::KeyAddition(std::vector<int>& s_BoxVector,int& index)
 	{
 		s_BoxVector.push_back(sboxBuffer[i]);
 	}
-	
+	/*
 	for(auto& x : s_BoxVector)
 		std::cout << x << std::endl;
-	
+	*/
 	
 };
 
@@ -134,26 +137,56 @@ void AES_C::Initial_Key(std::vector<std::string>& w_String_Vector)
 		std::cout << x << std::endl;
 };
 
+std::vector<int> AES_C::StringV_To_IntV(std::vector<std::string>& w_String_Vector)
+{
+	unsigned int x;
+	std::vector<int> w_Int_V;
+	std::stringstream ss;
+	for(int i = 0; i < w_String_Vector.size(); ++i)
+	{
+		for(int j = 0; j < w_String_Vector[i].size()/2; ++j)
+		{
+			//std::cout << w_String_Vector[i].substr(j*2,2) << std::endl;
+			
+			ss << std::hex << w_String_Vector[i].substr(j*2,2);
+			ss >> x;
+			w_Int_V.push_back(x);
+			ss.clear();
+		}
+	}
+	return w_Int_V;
+};
+
 //Key Rounds 1-11
 void AES_C::Key_Rounds(std::vector<std::string>& w_String_Vector, 
 		std::vector<int>& w_Rounds_Vector)
 {
 	std::cout << "Round" << std::endl;
 	std::vector<int> gReturn = G(w_String_Vector);
+	for(auto& x : gReturn)
+		std::cout << x << std::endl;
+	std::vector<int> w_Int_V = StringV_To_IntV(w_String_Vector);
 	std::stringstream ss;
 	std::string wStringBuffer;
 	unsigned int x;
 	uint8_t xorBuffer;
+	int count;
+	for(std::vector<int>::iterator it = w_Int_V.begin(); it != w_Int_V.end(); ++it)
+	{
+		std::cout << *it << " " << count << std::endl;
+		count++;
+	}
 	for(int i = 0; i < gReturn.size(); ++i)
 	{
+		/*
 		ss << std::hex << w_String_Vector[0].substr(i*2,2);
 		ss >> x;
 		std::cout << "ROUND HERE" << std::endl;
 		xorBuffer = (x ^ gReturn[i]);
 		wStringBuffer.append(std::to_string(xorBuffer));
-		ss.clear();
+		ss.clear();*/
 	}
-
+	
 	
 
 	/*
