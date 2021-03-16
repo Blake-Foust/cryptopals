@@ -144,11 +144,11 @@ std::vector<int> AES_C::StringV_To_IntV(std::vector<std::string>& w_String_Vecto
 	std::stringstream ss;
 	for(int i = 0; i < w_String_Vector.size(); ++i)
 	{
-		for(int j = 0; j < w_String_Vector[i].size()/2; ++j)
+		for(int j = 0; j < w_String_Vector[i].size()/8; ++j)
 		{
 			//std::cout << w_String_Vector[i].substr(j*2,2) << std::endl;
 			
-			ss << std::hex << w_String_Vector[i].substr(j*2,2);
+			ss << std::hex << w_String_Vector[i].substr(j*8,8);
 			ss >> x;
 			w_Int_V.push_back(x);
 			ss.clear();
@@ -169,31 +169,31 @@ void AES_C::Key_Rounds(std::vector<std::string>& w_String_Vector,
 	std::stringstream ss;
 	std::string wStringBuffer;
 	unsigned int x;
-	uint8_t xorBuffer;
+	uint32_t xorBuffer;
 	int count;
 	for(std::vector<int>::iterator it = w_Int_V.begin(); it != w_Int_V.end(); ++it)
 	{
 		std::cout << *it << " " << count << std::endl;
 		count++;
 	}
+
+	
+	//xorBuffer = w_Int_V[0] ^ gReturn[3];
+	
+	std::cout << xorBuffer << std::endl;
+	/*
 	for(int i = 0; i < gReturn.size(); ++i)
 	{
-		/*
+		
 		ss << std::hex << w_String_Vector[0].substr(i*2,2);
 		ss >> x;
 		std::cout << "ROUND HERE" << std::endl;
 		xorBuffer = (x ^ gReturn[i]);
 		wStringBuffer.append(std::to_string(xorBuffer));
 		ss.clear();*/
-	}
-	
+	//}
 	
 
-	/*
-	for(int i = 0; i <= 10; ++i)
-	{
-		w_Rounds_Vector +=(std::to_string(std::stoi(w_String_Vector[4*i - 4], 0, 16) ^ G(w_String_Vector))); 
-	}*/
 };
 
 //The key schedule which creates all rounds of keys 0-11
@@ -216,7 +216,7 @@ void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>
 {
 
 	//x^8+x^4+x^3+x+1 galois field of 2^8
-	std::cout << byteHexString << std::endl;
+	//std::cout << byteHexString << std::endl;
 	uint16_t hexString;
 	std::istringstream ost(byteHexString);
 	ost >> std::hex >> hexString; 
@@ -267,7 +267,7 @@ void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>
                                 tmp = b1;
                                 b1 = b2;
                                 b2 = tmp;
-                                std::cout << b2 << ": b2 " << b1 << ": b1" << std::endl;
+                                //std::cout << b2 << ": b2 " << b1 << ": b1" << std::endl;
 
                                 for(int q = 0; q < quotient.size(); ++q)
                                 {
@@ -306,8 +306,9 @@ void AES_C::Mult_Inverse(std::string& byteHexString, std::vector<std::bitset<9>>
                 }
         }
 
-        std::cout << "Multiplicative Inverse: " << tNEW << std::endl;
+        //std::cout << "Multiplicative Inverse: " << tNEW << std::endl;
         std::cout << std::hex << tNEW.to_ulong() << std::endl;
+	
 	returnVector.push_back(tNEW);
 	 
 	//return returnVector;
@@ -321,7 +322,7 @@ void AES_C::Affine_Transform(std::vector<std::bitset<9>>& multInvTable, std::vec
 
 	for(int i = 0; i < multInvTable.size(); ++i)
 	{
-		std::cout << multInvTable[i] << std::endl;
+		//std::cout << multInvTable[i] << std::endl;
 		for(int j = 0; j < multInvTable[i].size()-1; ++j)
 		{
 			affine_gf28[j] = multInvTable[i][j] ^ multInvTable[i][(j+4)%8] 
@@ -348,10 +349,10 @@ void AES_C::Shift_Rows(std::vector<int>& s_BoxVector, std::vector<int>& shift_Ro
 			n_S_BOX.push_back(s_BoxVector[k*4 + j]);
 		}
 	}
-	for(int pl = 0; pl < n_S_BOX.size(); ++pl)
-		std::cout << n_S_BOX[pl] << std::endl;
+	//for(int pl = 0; pl < n_S_BOX.size(); ++pl)
+	//	std::cout << n_S_BOX[pl] << std::endl;
 	
-	std::cout << "AES SHIFT: \n";
+	//std::cout << "AES SHIFT: \n";
 	
 	int five = 5;
 	for(int i = 0; i < 16; i += 4)
@@ -362,10 +363,10 @@ void AES_C::Shift_Rows(std::vector<int>& s_BoxVector, std::vector<int>& shift_Ro
 		}
 	}	
 	
-	for(int lp = 0; lp < shift_Rows_V.size(); ++lp)
+	/*for(int lp = 0; lp < shift_Rows_V.size(); ++lp)
 	{
 		std::cout << shift_Rows_V[lp] << std::endl;
-	}
+	}*/
 };
 
 
