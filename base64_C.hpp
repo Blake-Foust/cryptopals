@@ -22,7 +22,7 @@ private:
 	uint8_t numberOfIterations = 0;
 	uint8_t b64SLength = 0;
 	
-	void b64_padding(auto& inputLength);
+	void b64_padding(uint8_t& inputLength);
 	void b64_enc_algorithm();
 	void b64_decrypt(std::string& cryptedText); 
 public:

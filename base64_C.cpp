@@ -36,7 +36,7 @@ void Base64_C::b64_encode(std::string& userPrivateInput)
 	std::cout << "Decrtyped to Hex: " << dB64 << "\n";
 };
 
-void Base64_C::b64_padding(auto& inputLength)
+void Base64_C::b64_padding(uint8_t& inputLength)
 {
 
 	if(inputLength%3 != 0)

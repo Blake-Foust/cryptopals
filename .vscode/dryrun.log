@@ -1,0 +1,10 @@
+/usr/bin/make CryptProgram --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/dracul/CryptographyWork/cryptopals'
+g++ -g -Wall -std=c++17   -c -o mainCrypto.o mainCrypto.cpp
+g++ -g -Wall -std=c++17   -c -o crypto_Functions.o crypto_Functions.cpp
+g++ -g -Wall -std=c++17   -c -o base64_C.o base64_C.cpp
+g++ -g -Wall -std=c++17   -c -o AES_C.o AES_C.cpp
+g++ -g -Wall -std=c++17   -c -o AES_128_ECB.o AES_128_ECB.cpp
+g++ mainCrypto.o crypto_Functions.o base64_C.o AES_C.o AES_128_ECB.o -o CryptProgram -g -Wall -std=c++17
+make: Leaving directory '/home/dracul/CryptographyWork/cryptopals'
+ 
