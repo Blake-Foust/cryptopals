@@ -32,7 +32,7 @@ int main()
 	a.PracticeRun();	
 */
 
-	std::string key = "Thats my Kung Fu";
+	std::string key = "YELLOW SUBMARINE";
 	AES_128_ECB d;
 
 	std::ifstream myfile;

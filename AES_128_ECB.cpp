@@ -6,6 +6,8 @@
 #include <cstddef>
 #include <list>
 #include <unistd.h>
+#include <chrono>
+#include <thread>
 #include "AES_128_ECB.hpp"
 
 using std::cout;
@@ -16,10 +18,81 @@ using std::cin;
 
 AES_128_ECB::AES_128_ECB(){};
  
-void AES_128_ECB::DECRYPT(std::string& key, std::ifstream& InputFile)
+void AES_128_ECB::DECRYPT(std::string& key, std::ifstream& inputFile)
 {
-    std::cout << key << std::endl;
+    auto round = 0;
     KEY_SCHEDULE(key);
+    PlainTextToHex(inputFile);
+    KeyAddition(round);
+};
+
+void AES_128_ECB::KeyAddition(auto& round)
+{
+    for(auto& x : roundKeys)
+    {
+        cout << x.first << " " << endl;
+        
+    }
+    std::vector<std::vector<uint8_t>> keyWord = roundKeys.at(round);
+    
+};
+
+void AES_128_ECB::Byte_Substitution()
+{
+
+};
+
+void AES_128_ECB::Diffusion_Layer()
+{
+
+};
+
+void AES_128_ECB::PlainTextToHex(std::ifstream& inputFile)
+{
+//Divide input file by 16 char
+    std::string line{};
+    int c;
+    if(inputFile.is_open())
+    {
+        while(getline(inputFile,line))
+        {
+            pText.append(line);
+        }
+    }
+   
+    for(unsigned int i = 0; i < pText.length(); i+=16)
+    {
+        uint8_t pText_Hex_Value{};
+        std::string pTextSubstring {};
+        uint8_t pTextHexValue{};
+        std::string pTextCharSubString{};
+        pTextSubstring = pText.substr(i, 16);
+        std::stringstream ss;
+ //maybe make this a template?
+        for(int j = 0; j < 4; ++j)
+        {
+            std::vector<uint8_t> pTextHexWord{};
+            for(int k = j*4; k < j*4+4; ++k)
+            {
+                ss << std::hex << int(pTextSubstring[k]);
+                pTextCharSubString = ss.str();
+                //sleep(1);
+                pText_Hex_Value = std::stoi(pTextCharSubString,nullptr, 16);
+                pTextHexWord.push_back(pText_Hex_Value);
+                ss.str("");
+            }
+            pTextHexWords.push_back(pTextHexWord);
+        }   
+    }
+//-------------------------------
+
+
+    
+
+};
+
+void AES_128_ECB::InverseMixColumn()
+{
 
 };
 
@@ -46,9 +119,9 @@ void AES_128_ECB::KEY_SCHEDULE(const std::string& key)
     unsigned int keyRound = 0;
     while(keyRound != 10)
     {
+        roundKeys.insert(std::pair<unsigned int, std::vector<std::vector<uint8_t>>>(keyRound, keyHexWords));
         std::vector<uint8_t> gWord{};
-        gWord = G(keyHexWords, keyRound);
-        
+        gWord = G(keyHexWords, keyRound);  
         XorVector(keyHexWords,gWord);   
         ++keyRound;
         cout << "Key Round " << keyRound << endl;
@@ -63,12 +136,12 @@ std::vector<uint8_t> AES_128_ECB::G(std::vector<std::vector<uint8_t>>& keyHexWor
     std::rotate(lastWord.begin(),lastWord.begin()+1,lastWord.end());
     lastWord = S_Box(lastWord);
     lastWord[0] ^= round_Constants[keyRound];
-    for(unsigned int i = 0; i < lastWord.size(); ++i)
-        cout << std::hex << static_cast<int>(lastWord[i]) << endl;
+    // for(unsigned int i = 0; i < lastWord.size(); ++i)
+    //     cout << std::hex << static_cast<int>(lastWord[i]) << endl;
     return lastWord;
 };
 
-//send address of method of G instead of making a copy 
+
 void AES_128_ECB::XorVector(std::vector<std::vector<uint8_t>>& keyHexWords, std::vector<uint8_t>& gWord)
 {
 
@@ -104,8 +177,8 @@ std::vector<uint8_t> AES_128_ECB::S_Box(std::vector<uint8_t>& lastWord)
         gVector.push_back(s_box_vector[x][y]);
     }
 
-    for(auto& p : gVector)
-        cout << std::hex << static_cast<int>(p) << std::endl;
+    // for(auto& p : gVector)
+    //     cout << std::hex << static_cast<int>(p) << std::endl;
     return gVector;
 
 };

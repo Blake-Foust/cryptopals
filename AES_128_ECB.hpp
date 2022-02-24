@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <unordered_map>
 
 class AES_128_ECB 
 {
@@ -28,15 +29,22 @@ private:
                                          0x20,0x40,0x80,0x1b,0x36};
     const unsigned short GF_polynomial = 0x11B;
     uint8_t keyVectorSize = 4;
-
+    std::unordered_map<unsigned int, std::vector<std::vector<uint8_t>>> roundKeys;
+    std::string pText;
+    std::vector<std::vector<uint8_t>> pTextHexWords{};
 
 public:
     AES_128_ECB();
     void DECRYPT(std::string&, std::ifstream&);
+    void InverseMixColumn();
+    void PlainTextToHex(std::ifstream&);
     std::vector<uint8_t> G(std::vector<std::vector<uint8_t>>&,unsigned int&);
     void KEY_SCHEDULE(const std::string&);
     std::vector<uint8_t> S_Box(std::vector<uint8_t>&);
     void XorVector(std::vector<std::vector<uint8_t>>&, std::vector<uint8_t>&);
+    void KeyAddition(auto&);
+    void Byte_Substitution();
+    void Diffusion_Layer();
     
 
     

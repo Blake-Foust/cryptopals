@@ -1,6 +1,4 @@
 /usr/bin/make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
- 
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Feb 13 02:28:34 2022
+# Make data base, printed on Wed Feb 23 13:01:34 2022
 
 # Variables
 
@@ -17,7 +15,7 @@ GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0eaacc1f-abf6-4d5a-86fa-abbc6c3adb88.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-27f8daab-ac21-468d-ac1d-4d5fa4fddca7.sock
 # environment
 VSCODE_CWD = /home/dracul/CryptographyWork/cryptopals
 # environment
@@ -85,7 +83,7 @@ LESS_TERMCAP_ue = [0m
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXXcmTb0K/agent.881
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXX5BoBrq/agent.887
 # default
 .SHELLFLAGS := -c
 # environment
@@ -103,13 +101,13 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 1949
+VSCODE_PID = 41506
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/881,unix/kali:/tmp/.ICE-unix/881
+SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/887,unix/kali:/tmp/.ICE-unix/887
 # automatic
 *F = $(notdir $*)
 # environment
@@ -181,7 +179,7 @@ XDG_VTNR = 7
 # makefile
 .DEFAULT_GOAL := CryptProgram
 # environment
-DISPLAY = :0.0
+DISPLAY = :0
 # environment
 USER = dracul
 # environment
@@ -189,7 +187,7 @@ GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
 # environment
-SSH_AGENT_PID = 965
+SSH_AGENT_PID = 971
 # environment
 _ = /usr/bin/code
 # environment
@@ -214,8 +212,6 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-1c387558-1.64.2-main.sock
 TERM = xterm-256color
 # environment
 XDG_SESSION_ID = 2
-# environment
-PANEL_GDK_CORE_DEVICE_EVENTS = 0
 # environment
 DOTNET_CLI_TELEMETRY_OPTOUT = 1
 # default
@@ -243,7 +239,7 @@ XDG_MENU_PREFIX = xfce-
 # environment
 GDMSESSION = lightdm-xsession
 # variable set hash-table stats:
-# Load=115/1024=11%, Rehash=0, Collisions=13/146=9%
+# Load=114/1024=11%, Rehash=0, Collisions=13/145=9%
 
 # Pattern-specific Variable Values
 
@@ -278,10 +274,12 @@ crypto_Functions.hpp:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+ 
+make: *** No rule to make target 'all'.  Stop.
+ 
 #  Last modified 2022-02-02 19:38:23.661692741
 #  File has been updated.
 #  Successfully updated.
@@ -359,6 +357,6 @@ base64_C.hpp:
 # strcache performance: lookups = 59 / hit rate = 52%
 # hash-table stats:
 # Load=28/8192=0%, Rehash=0, Collisions=0/59=0%
-# Finished Make data base on Sun Feb 13 02:28:34 2022
+# Finished Make data base on Wed Feb 23 13:01:34 2022
 
  
