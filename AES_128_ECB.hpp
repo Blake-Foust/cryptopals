@@ -34,20 +34,26 @@ private:
     std::vector<std::vector<uint8_t>> pTextHexWords{};
 
 public:
+    //Constructor/Desctuctor
     AES_128_ECB();
     ~AES_128_ECB();
-    void DECRYPT(std::string&, std::ifstream&);
-    void InverseMixColumn();
-    void PlainTextToHex(std::ifstream&);
-    std::vector<uint8_t> G(std::vector<std::vector<uint8_t>>&,unsigned int&);
+
+    //Main Functions for AES
+    void InverseMixColumn(); 
     void KEY_SCHEDULE(const std::string&);
-    std::vector<uint8_t> S_Box(std::vector<uint8_t>&);
-    void XorVector(std::vector<std::vector<uint8_t>>&, std::vector<uint8_t>&);
     void KeyAddition(auto&);
     void Byte_Substitution();
-    void Diffusion_Layer();
-    
+    void Diffusion_Layer(); 
+    void DECRYPT(std::string&, std::ifstream&);
 
+    
+    //Functions 
+    void XorVector(std::vector<std::vector<uint8_t>>&, std::vector<uint8_t>&);
+    void PlainTextToHex(std::ifstream&);
+
+    //Variables
+    std::vector<uint8_t> S_Box(std::vector<uint8_t>&);
+    std::vector<uint8_t> G(std::vector<std::vector<uint8_t>>&,unsigned int&);
     
 
 
