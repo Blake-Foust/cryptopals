@@ -35,6 +35,7 @@ private:
 
 public:
     AES_128_ECB();
+    ~AES_128_ECB();
     void DECRYPT(std::string&, std::ifstream&);
     void InverseMixColumn();
     void PlainTextToHex(std::ifstream&);

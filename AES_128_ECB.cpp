@@ -18,6 +18,8 @@ using std::cin;
 
 AES_128_ECB::AES_128_ECB(){};
  
+AES_128_ECB::~AES_128_ECB(){};
+
 void AES_128_ECB::DECRYPT(std::string& key, std::ifstream& inputFile)
 {
     auto round = 0;

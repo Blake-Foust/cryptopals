@@ -6,7 +6,7 @@
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Feb 23 13:01:34 2022
+# Make data base, printed on Sat Mar  5 23:13:55 2022
 
 # Variables
 
@@ -15,7 +15,7 @@ GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-27f8daab-ac21-468d-ac1d-4d5fa4fddca7.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-58a208e7-d929-4f18-a7c1-2d62b897126f.sock
 # environment
 VSCODE_CWD = /home/dracul/CryptographyWork/cryptopals
 # environment
@@ -83,7 +83,7 @@ LESS_TERMCAP_ue = [0m
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXX5BoBrq/agent.887
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXXFSkzuG/agent.893
 # default
 .SHELLFLAGS := -c
 # environment
@@ -101,13 +101,13 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 41506
+VSCODE_PID = 36320
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/887,unix/kali:/tmp/.ICE-unix/887
+SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/893,unix/kali:/tmp/.ICE-unix/893
 # automatic
 *F = $(notdir $*)
 # environment
@@ -179,7 +179,7 @@ XDG_VTNR = 7
 # makefile
 .DEFAULT_GOAL := CryptProgram
 # environment
-DISPLAY = :0
+DISPLAY = :0.0
 # environment
 USER = dracul
 # environment
@@ -187,7 +187,7 @@ GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
 # environment
-SSH_AGENT_PID = 971
+SSH_AGENT_PID = 977
 # environment
 _ = /usr/bin/code
 # environment
@@ -211,7 +211,9 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-1c387558-1.64.2-main.sock
 # environment
 TERM = xterm-256color
 # environment
-XDG_SESSION_ID = 2
+XDG_SESSION_ID = 3
+# environment
+PANEL_GDK_CORE_DEVICE_EVENTS = 0
 # environment
 DOTNET_CLI_TELEMETRY_OPTOUT = 1
 # default
@@ -239,7 +241,7 @@ XDG_MENU_PREFIX = xfce-
 # environment
 GDMSESSION = lightdm-xsession
 # variable set hash-table stats:
-# Load=114/1024=11%, Rehash=0, Collisions=13/145=9%
+# Load=115/1024=11%, Rehash=0, Collisions=13/146=9%
 
 # Pattern-specific Variable Values
 
@@ -247,9 +249,9 @@ GDMSESSION = lightdm-xsession
 
 # Directories
 
-# . (device 2049, inode 5242937): 22 files, no impossibilities.
+# . (device 2049, inode 5242937): 16 files, no impossibilities.
 
-# 22 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -275,11 +277,11 @@ crypto_Functions.hpp:
 #  File has not been updated.
 
 # Not a target:
-Makefile:
-#  Implicit rule search has been done.
  
 make: *** No rule to make target 'all'.  Stop.
  
+Makefile:
+#  Implicit rule search has been done.
 #  Last modified 2022-02-02 19:38:23.661692741
 #  File has been updated.
 #  Successfully updated.
@@ -354,9 +356,9 @@ base64_C.hpp:
 # strcache buffers: 1 (0) / strings = 28 / storage = 317 B / avg = 11 B
 # current buf: size = 8162 B / used = 317 B / count = 28 / avg = 11 B
 
-# strcache performance: lookups = 59 / hit rate = 52%
+# strcache performance: lookups = 53 / hit rate = 47%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/59=0%
-# Finished Make data base on Wed Feb 23 13:01:34 2022
+# Load=28/8192=0%, Rehash=0, Collisions=0/53=0%
+# Finished Make data base on Sat Mar  5 23:13:55 2022
 
  
