@@ -1,6 +1,6 @@
 OBJS = mainCrypto.o crypto_Functions.o base64_C.o AES_C.o AES_128_ECB.o
 CXX = g++
-CXXFLAGS = -g -Wall -std=c++17
+CXXFLAGS = -g -Wall -std=c++20
 #LDLIBS 
 
 CryptProgram: $(OBJS)

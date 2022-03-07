@@ -30,13 +30,51 @@ void AES_128_ECB::DECRYPT(std::string& key, std::ifstream& inputFile)
 
 void AES_128_ECB::KeyAddition(auto& round)
 {
-    for(auto& x : roundKeys)
-    {
-        cout << x.first << " " << endl;
-        
-    }
-    std::vector<std::vector<uint8_t>> keyWord = roundKeys.at(round);
+    std::unordered_map<unsigned int, std::vector<std::vector<uint8_t>>>::const_iterator got = roundKeys.find(round);
+    std::vector<uint8_t> keyAddHexWord{};
+    auto shelf = 0;
+    if(got == roundKeys.end())
+        cout << "Round is out of scope!\n";
+    else
+        while(shelf < pTextHexWords.size())
+        {
+            for(unsigned int i = 0; i < got->second.size(); ++i)
+            {
+                for(unsigned int j = 0; j < got->second[i].size(); ++j)
+                {
+                    keyAddHexWord.push_back(pTextHexWords[shelf] ^ got->second[i][j]);
+                    cout << "Ptext: " << pTextHexWords[shelf] << " ^ " << "keyRound " << got->second[i][j] << " == " << keyAddHexWord[shelf] << "\n";
+                    shelf++;
+                }
+            }
+        }
     
+        // for(unsigned int y = 0; y < pTextHexWords.size(); ++y)
+        // {
+        //     for(unsigned int z = 0; z < pTextHexWords[y].size(); ++z)
+        //     {
+        //         for(unsigned int i = 0; i < got->second.size(); ++i)
+        //         { 
+        //             for(unsigned int j = 0; j < got->second[i].size(); ++j) 
+        //             {    //std::cout << std::hex << static_cast<int>(got->second[i][j]) << endl;
+        //                 std::cout << std::hex << static_cast<int>(pTextHexWords[y][z]);
+        //                 keyAddHexWord.push_back(pTextHexWords[y][z] ^ got->second[i][j]);
+        //             }
+        //         }
+        //     }
+        // }
+
+
+    // for(auto& x : roundKeys)
+    // {
+    //     cout << x.first << " " << endl;
+    //     for(auto& p : x.second)
+    //     {
+    //         for(unsigned int i = 0; i < p.size(); ++i)
+    //            cout << std::hex << static_cast<int>(p[i]) << endl;
+    //     }  
+
+    // }
 };
 
 void AES_128_ECB::Byte_Substitution()
@@ -62,30 +100,27 @@ void AES_128_ECB::PlainTextToHex(std::ifstream& inputFile)
         }
     }
    
-    for(unsigned int i = 0; i < pText.length(); i+=16)
+    for(unsigned int i = 0; i < pText.length(); i++)
     {
         uint8_t pText_Hex_Value{};
         std::string pTextSubstring {};
         uint8_t pTextHexValue{};
         std::string pTextCharSubString{};
-        pTextSubstring = pText.substr(i, 16);
+        //pTextSubstring = pText.substr(i, 16);
         std::stringstream ss;
  //maybe make this a template?
-        for(int j = 0; j < 4; ++j)
-        {
-            std::vector<uint8_t> pTextHexWord{};
-            for(int k = j*4; k < j*4+4; ++k)
-            {
-                ss << std::hex << int(pTextSubstring[k]);
-                pTextCharSubString = ss.str();
-                //sleep(1);
-                pText_Hex_Value = std::stoi(pTextCharSubString,nullptr, 16);
-                pTextHexWord.push_back(pText_Hex_Value);
-                ss.str("");
-            }
-            pTextHexWords.push_back(pTextHexWord);
-        }   
+        ss << std::hex << int(pText[i]);
+        //cout << "PTEXT : " << pText[i] << endl;
+        pTextCharSubString = ss.str();
+        //sleep(1);
+        pText_Hex_Value = std::stoi(pTextCharSubString,nullptr, 16);
+        //cout << "HEX : " << std::hex << static_cast<int>(pText_Hex_Value) << endl;
+        pTextHexWords.push_back(pText_Hex_Value);
+        ss.str("");          
     }
+    //for(auto& x : pTextHexWords)
+    //        std::cout << static_cast<int>(x);
+ 
 //-------------------------------
 
 
@@ -116,10 +151,18 @@ void AES_128_ECB::KEY_SCHEDULE(const std::string& key)
             ss.str("");          
         }
         keyHexWords.push_back(keyHexWord);
+        for (unsigned int i = 0; i < keyHexWords.size(); i++) 
+        {
+            for (unsigned int j = 0; j < keyHexWords[i].size(); j++)
+            {
+                    cout << "Key Hex Word " << std::hex << static_cast<int>(keyHexWords[i][j]) << " ";
+            }    
+            cout << endl;
+        }
     }
 
     unsigned int keyRound = 0;
-    while(keyRound != 10)
+    while(keyRound != 11)
     {
         roundKeys.insert(std::pair<unsigned int, std::vector<std::vector<uint8_t>>>(keyRound, keyHexWords));
         std::vector<uint8_t> gWord{};

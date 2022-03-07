@@ -31,7 +31,8 @@ private:
     uint8_t keyVectorSize = 4;
     std::unordered_map<unsigned int, std::vector<std::vector<uint8_t>>> roundKeys;
     std::string pText;
-    std::vector<std::vector<uint8_t>> pTextHexWords{};
+    std::vector<uint8_t> pTextHexWords{};
+    std::vector<std::vector<uint8_t>> keyAddHexWords{};
 
 public:
     //Constructor/Desctuctor

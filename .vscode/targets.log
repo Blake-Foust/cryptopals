@@ -1,194 +1,385 @@
 /usr/bin/make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+ 
 # GNU Make 4.3
+ 
 # Built for x86_64-pc-linux-gnu
+ 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
+ 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
 # This is free software: you are free to change and redistribute it.
+ 
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Sat Mar  5 23:13:55 2022
+ 
+# Make data base, printed on Sun Mar  6 18:20:52 2022
+ 
 
 # Variables
+ 
 
+ 
 # environment
+ 
 GDK_BACKEND = x11
+ 
 # environment
+ 
 LC_ALL = C
+ 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-58a208e7-d929-4f18-a7c1-2d62b897126f.sock
+ 
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-96b102e5-8cdb-4aab-b50f-3c2142dfc2ce.sock
+ 
 # environment
+ 
 VSCODE_CWD = /home/dracul/CryptographyWork/cryptopals
+ 
 # environment
+ 
 WINDOWID = 0
+ 
 # environment
+ 
 LESS_TERMCAP_me = [0m
+ 
 # environment
+ 
 GDM_LANG = en_US.utf8
+ 
 # default
+ 
 MAKE_COMMAND := /usr/bin/make
+ 
 # environment
+ 
 QT_ACCESSIBILITY = 1
+ 
 # automatic
+ 
 @D = $(patsubst %/,%,$(dir $@))
+ 
 # environment
+ 
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+ 
 # default
+ 
 .VARIABLES := 
+ 
 # environment
+ 
 PWD = /home/dracul/CryptographyWork/cryptopals
+ 
 # automatic
+ 
 %D = $(patsubst %/,%,$(dir $%))
+ 
 # environment
+ 
 XDG_DATA_DIRS = /usr/share/xfce4:/usr/local/share/:/usr/share/:/usr/share
+ 
 # environment
+ 
 OLDPWD = /home/dracul
+ 
 # automatic
+ 
 ^D = $(patsubst %/,%,$(dir $^))
+ 
 # environment
+ 
 VSCODE_LOG_STACK = false
+ 
 # automatic
+ 
 %F = $(notdir $%)
+ 
 # environment
+ 
 VSCODE_CODE_CACHE_PATH = /home/dracul/.config/Code/CachedData/f80445acd5a3dadef24aa209168452a3d97cc326
+ 
 # environment
+ 
 XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+ 
 # environment
+ 
 LANG = C
+ 
 # environment
+ 
 POWERSHELL_UPDATECHECK = Off
+ 
 # environment
+ 
 XAUTHORITY = /home/dracul/.Xauthority
+ 
 # default
+ 
 .LOADED := 
+ 
 # environment
+ 
 LESS_TERMCAP_md = [1;36m
+ 
 # default
+ 
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+ 
 # environment
+ 
 COLORFGBG = 15;0
+ 
 # makefile
+ 
 MAKEFLAGS = pqrR
+ 
 # environment
+ 
 LESS_TERMCAP_so = [01;33m
+ 
 # makefile
+ 
 CURDIR := /home/dracul/CryptographyWork/cryptopals
+ 
 # environment
+ 
 VSCODE_PIPE_LOGGING = true
+ 
 # environment
+ 
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+ 
 # automatic
+ 
 *D = $(patsubst %/,%,$(dir $*))
+ 
 # environment
+ 
 LESS_TERMCAP_ue = [0m
+ 
 # environment
+ 
 MFLAGS = -pqrR
+ 
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXXFSkzuG/agent.893
+ 
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXX3UCEZ0/agent.882
+ 
 # default
+ 
 .SHELLFLAGS := -c
+ 
 # environment
+ 
 XDG_CONFIG_DIRS = /etc/xdg
+ 
 # automatic
+ 
 +D = $(patsubst %/,%,$(dir $+))
+ 
 # environment
+ 
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=5fda7987-ad8f-415a-8033-6b2c32e2dd43&iid=5fda7987-ad8f-415a-8033-6b2c32e2dd43&sid=5fda7987-ad8f-415a-8033-6b2c32e2dd43","uploadToServer":true}
+ 
 # environment
+ 
 XDG_SESSION_DESKTOP = lightdm-xsession
+ 
 # makefile (from 'Makefile', line 1)
+ 
 MAKEFILE_LIST := Makefile
+ 
 # automatic
+ 
 @F = $(notdir $@)
+ 
 # environment
+ 
 VSCODE_VERBOSE_LOGGING = true
+ 
 # environment
-VSCODE_PID = 36320
+ 
+VSCODE_PID = 2851
+ 
 # environment
+ 
 XDG_SESSION_TYPE = x11
+ 
 # automatic
+ 
 ?D = $(patsubst %/,%,$(dir $?))
+ 
 # environment
-SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/893,unix/kali:/tmp/.ICE-unix/893
+ 
+SESSION_MANAGER = local/kali:@/tmp/.ICE-unix/882,unix/kali:/tmp/.ICE-unix/882
+ 
 # automatic
+ 
 *F = $(notdir $*)
+ 
 # environment
+ 
 QT_QPA_PLATFORMTHEME = qt5ct
+ 
 # environment
+ 
 CHROME_DESKTOP = code-url-handler.desktop
+ 
 # environment
+ 
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+ 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # environment
+ 
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+ 
 # environment
+ 
 BREAKPAD_DUMP_LOCATION = /home/dracul/.config/Code/exthost Crash Reports
+ 
 # default
+ 
 MAKE_HOST := x86_64-pc-linux-gnu
+ 
 # makefile (from 'Makefile', line 1)
+ 
 OBJS = mainCrypto.o crypto_Functions.o base64_C.o AES_C.o AES_128_ECB.o
+ 
 # makefile
+ 
 SHELL = /bin/sh
+ 
 # environment
+ 
 LESS_TERMCAP_us = [1;32m
+ 
 # default
+ 
 MAKECMDGOALS := all
+ 
 # environment
+ 
 SHLVL = 1
+ 
 # environment
+ 
 MAKELEVEL := 0
+ 
 # default
+ 
 MAKE = $(MAKE_COMMAND)
+ 
 # environment
+ 
 PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+ 
 # environment
+ 
 LESS_TERMCAP_se = [0m
+ 
 # default
+ 
 MAKEFILES := 
+ 
 # environment
+ 
 LANGUAGE = 
+ 
 # automatic
+ 
 ^F = $(notdir $^)
+ 
 # environment
+ 
 COMMAND_NOT_FOUND_INSTALL_PROMPT = 1
+ 
 # environment
+ 
 LESS_TERMCAP_mb = [1;31m
+ 
 # environment
+ 
 VSCODE_LOG_NATIVE = false
+ 
 # automatic
+ 
 ?F = $(notdir $?)
+ 
 # environment
+ 
 XDG_SEAT = seat0
+ 
 # environment
+ 
 XDG_CURRENT_DESKTOP = XFCE
+ 
 # environment
+ 
 LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+ 
 # automatic
+ 
 +F = $(notdir $+)
+ 
 # environment
+ 
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+ 
 # environment
+ 
 DESKTOP_SESSION = lightdm-xsession
+ 
 # environment
+ 
 ORIGINAL_XDG_CURRENT_DESKTOP = XFCE
+ 
 # 'override' directive
+ 
 GNUMAKEFLAGS := 
+ 
 # environment
+ 
 LOGNAME = dracul
+ 
 # environment
+ 
 XDG_VTNR = 7
+ 
 # makefile
+ 
 .DEFAULT_GOAL := CryptProgram
+ 
 # environment
+ 
 DISPLAY = :0.0
+ 
 # environment
+ 
 USER = dracul
+ 
 # environment
+ 
 GTK_MODULES = gail:atk-bridge
+ 
 # default
+ 
 MAKE_VERSION := 4.3
+ 
 # environment
-SSH_AGENT_PID = 977
+ 
+SSH_AGENT_PID = 967
+ 
 # environment
+ 
 _ = /usr/bin/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
@@ -211,7 +402,7 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-1c387558-1.64.2-main.sock
 # environment
 TERM = xterm-256color
 # environment
-XDG_SESSION_ID = 3
+XDG_SESSION_ID = 2
 # environment
 PANEL_GDK_CORE_DEVICE_EVENTS = 0
 # environment
@@ -229,7 +420,7 @@ VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
 # makefile (from 'Makefile', line 3)
-CXXFLAGS = -g -Wall -std=c++17
+CXXFLAGS = -g -Wall -std=c++20
 # environment
 XDG_GREETER_DATA_DIR = /var/lib/lightdm/data/dracul
 # default
@@ -249,9 +440,9 @@ GDMSESSION = lightdm-xsession
 
 # Directories
 
-# . (device 2049, inode 5242937): 16 files, no impossibilities.
+# . (device 2049, inode 5242937): 22 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 22 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -277,12 +468,9 @@ crypto_Functions.hpp:
 #  File has not been updated.
 
 # Not a target:
- 
-make: *** No rule to make target 'all'.  Stop.
- 
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-02 19:38:23.661692741
+#  Last modified 2022-03-06 18:20:19.500180002
 #  File has been updated.
 #  Successfully updated.
 
@@ -356,9 +544,9 @@ base64_C.hpp:
 # strcache buffers: 1 (0) / strings = 28 / storage = 317 B / avg = 11 B
 # current buf: size = 8162 B / used = 317 B / count = 28 / avg = 11 B
 
-# strcache performance: lookups = 53 / hit rate = 47%
+# strcache performance: lookups = 59 / hit rate = 52%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Sat Mar  5 23:13:55 2022
+# Load=28/8192=0%, Rehash=0, Collisions=0/59=0%
+# Finished Make data base on Sun Mar  6 18:20:52 2022
 
  
