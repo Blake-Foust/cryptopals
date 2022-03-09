@@ -22,29 +22,31 @@ AES_128_ECB::~AES_128_ECB(){};
 
 void AES_128_ECB::DECRYPT(std::string& key, std::ifstream& inputFile)
 {
-    auto round = 0;
+    auto round = 10;
     KEY_SCHEDULE(key);
     PlainTextToHex(inputFile);
     KeyAddition(round);
+    INV_SHIFT_ROWS();
+    round--;
 };
 
 void AES_128_ECB::KeyAddition(auto& round)
 {
     std::unordered_map<unsigned int, std::vector<std::vector<uint8_t>>>::const_iterator got = roundKeys.find(round);
-    std::vector<uint8_t> keyAddHexWord{};
-    auto shelf = 0;
+
+    auto index = 0;
     if(got == roundKeys.end())
         cout << "Round is out of scope!\n";
     else
-        while(shelf < pTextHexWords.size())
+        while(index < pTextHexWords.size())
         {
             for(unsigned int i = 0; i < got->second.size(); ++i)
             {
                 for(unsigned int j = 0; j < got->second[i].size(); ++j)
                 {
-                    keyAddHexWord.push_back(pTextHexWords[shelf] ^ got->second[i][j]);
-                    cout << "Ptext: " << pTextHexWords[shelf] << " ^ " << "keyRound " << got->second[i][j] << " == " << keyAddHexWord[shelf] << "\n";
-                    shelf++;
+                    this->keyAddHexWord.push_back(pTextHexWords[index] ^ got->second[i][j]);
+                    cout << "Ptext: " << pTextHexWords[index] << " ^ " << "keyRound " << got->second[i][j] << " == " << this->keyAddHexWord[index] << "\n";
+                    index++;
                 }
             }
         }
@@ -77,6 +79,36 @@ void AES_128_ECB::KeyAddition(auto& round)
     // }
 };
 
+void AES_128_ECB::INV_SHIFT_ROWS()
+{
+
+    std::vector<uint8_t> shift_buffer_v{}, sub_vector{};
+    std::vector<uint8_t> return_vector{};
+    std::cout << keyAddHexWord.size() << std::endl;
+    int count = 0;
+    for(unsigned int i = 0; i < keyAddHexWord.size(); i += 16)
+    {
+        sub_vector = {keyAddHexWord.begin() + i, keyAddHexWord.begin() + (i + 16)};
+        
+        for_each(sub_vector.begin(),sub_vector.end(),[](uint8_t number){cout << std::hex << "numb" << number << endl;});
+        
+        for(int j = 0; j < 4; j++)
+        {
+            for(int k = 0; k < 4; k++)
+            {
+                shift_buffer_v.push_back(sub_vector[j + k*4]);
+
+            }
+        }
+
+        std::rotate(shift_buffer_v.begin() + 4, shift_buffer_v.begin() + 7, shift_buffer_v.begin() + 8);
+        std::rotate(shift_buffer_v.begin() + 8, shift_buffer_v.begin() + 10, shift_buffer_v.begin() + 12);
+        std::rotate(shift_buffer_v.begin() + 12, shift_buffer_v.begin() + 13, shift_buffer_v.end());
+        return_vector.insert(return_vector.begin() + i, shift_buffer_v.begin(), shift_buffer_v.end());
+    }
+
+};
+
 void AES_128_ECB::Byte_Substitution()
 {
 
@@ -91,7 +123,6 @@ void AES_128_ECB::PlainTextToHex(std::ifstream& inputFile)
 {
 //Divide input file by 16 char
     std::string line{};
-    int c;
     if(inputFile.is_open())
     {
         while(getline(inputFile,line))

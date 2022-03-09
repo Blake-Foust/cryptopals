@@ -32,6 +32,7 @@ private:
     std::unordered_map<unsigned int, std::vector<std::vector<uint8_t>>> roundKeys;
     std::string pText;
     std::vector<uint8_t> pTextHexWords{};
+    std::vector<uint8_t> keyAddHexWord{};
     std::vector<std::vector<uint8_t>> keyAddHexWords{};
 
 public:
@@ -44,6 +45,7 @@ public:
     void KEY_SCHEDULE(const std::string&);
     void KeyAddition(auto&);
     void Byte_Substitution();
+    void INV_SHIFT_ROWS();
     void Diffusion_Layer(); 
     void DECRYPT(std::string&, std::ifstream&);
 
