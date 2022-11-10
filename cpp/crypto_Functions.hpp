@@ -22,8 +22,7 @@ public:
 	bool hex_to_ASCII(std::string& hexString);
 	std::string xorHexS(std::string& hexString1, std::string& hexString2);
 	void Hex_Check(std::string& hexString);
-	void decrypt_SBXC(std::string hex, std::string& asciiString, 
-			std::vector<std::tuple<std::string, double, char>>& decryptionScores);
+	void decrypt_SBXC(std::string_view hex);
 	std::map<char, double> frequency_Map{
                 {' ', 13.00},
                 {'a', 8.56},

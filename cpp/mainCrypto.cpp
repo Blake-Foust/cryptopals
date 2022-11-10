@@ -3,7 +3,7 @@
  * mainCrypto.cpp
  *
  *
- * ./cryptogram #set #challenge
+ * ./Cryptogram #set #challenge
  */
 
 #include <iostream>
@@ -14,24 +14,36 @@
 #include "AES_128_ECB.hpp"
 
 std::string s1c1 = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
-
+std::string s1c21 = "1c0111001f010100061a024b53535009181c";
+std::string s1c22 = "686974207468652062756c6c277320657965";
+std::string s1c3 = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736";
 
 int main(int argc, char* argv[])
 {
 		
+	Crypto_Functions cp;	
 	int set = atoi(argv[1]);
-    	int challenge =  atoi(argv[2]);
+    int challenge =  atoi(argv[2]);
 
 	switch(set){
 		case 1:
 			{
-			Base64_C b64(s1c1);
-			break;
+				Base64_C b64(s1c1);
+				break;
+			}
+		case 2:
+			{
+				std::cout << cp.xorHexS(s1c21,s1c22) << std::endl;
+				break;
+			}
+		case 3:
+			{
+				cp.decrypt_SBXC(s1c3);
 			}
 		default:
 			{
-			std::cout << "Didnt' work \n";
-			break;
+				std::cout << "Didnt' work \n";
+				break;
 			}
 	}
 

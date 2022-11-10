@@ -27,19 +27,35 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 	return (var1.size() == var2.size());
 }
 
-//Decrypt_SINGLE_BYTE_XOR_CIPHER
-/*void Crypto_Functions::decrypt_SBXC(std::string hex, std::string& asciiString, 
-		std::vector<std::tuple<std::string, double, char>>& decryptionScores)
-{
-	std::stringstream bufferHexKey;
-	//check string to see if theyre global/private or in scope
-	std::string hexKeyString;
-	std::string xorString;
-	std::string hexSubString;
-	std::string checking, decryptedString;
-	for(int i = 0; i < decAsciiEnd;
+
+void Crypto_Functions::decrypt_SBXC(std::string_view hex){
+	int score,fscore = 0, hexLength = hex.length();
+	std::string aString;
+	std::cout << hexLength << std::endl;
+
+	for(int i = 0; i < 256; ++i){
+		this->asciiString={};
+		for(int j = 0; j < hexLength; ++j){
+			this->asciiString += hex[j] ^ i;
+			//std::cout << this->asciiString << std::endl;
+		}
+		hex_to_ASCII(this->asciiString);
+		for(int k = 0; k < this->asciiString.length(); ++k){
+			if(this->frequency_Map[this->asciiString[k]])
+			{
+				std::cout << "inside\n";
+				score += this->frequency_Map[this->asciiString[k]];
+			}
+		}
+		if(score > fscore){
+			fscore = score;
+			aString = this->asciiString;
+			//std::cout << aString << std::endl;
+		}
+		score = 0;			
+	}
 }
-*/
+
 
 //LOOK AT CCTYPE ISPRINT && ISBLANK FOR MORE INFO 
 bool Crypto_Functions::hex_to_ASCII(std::string& hexString)
