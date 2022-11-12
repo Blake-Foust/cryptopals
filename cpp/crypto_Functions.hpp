@@ -12,6 +12,7 @@ private:
 	std::string xorReturnString, asciiString;
 	std::vector<std::tuple<std::string, double, char>> decryptionScores;
 	std::string userValue1, userValue2;
+        std::vector<unsigned int> hexV; 
 public:
 
 	Crypto_Functions();
@@ -19,10 +20,11 @@ public:
 	Crypto_Functions(std::string& userInput1,std::string& userInput2);
 	template <typename T1, typename T2>
 	bool equal_size(T1 var1, T2 var2);
+        bool hex_to_DEC(std::string&);
 	bool hex_to_ASCII(std::string& hexString);
 	std::string xorHexS(std::string& hexString1, std::string& hexString2);
 	void Hex_Check(std::string& hexString);
-	void decrypt_SBXC(std::string_view hex);
+	void decrypt_SBXC(std::string&);
 	std::map<char, double> frequency_Map{
                 {' ', 13.00},
                 {'a', 8.56},
