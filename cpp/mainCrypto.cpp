@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
 		case 3:
 			{
 				cp.decrypt_SBXC(s1c3);
+				break;
 			}
 		default:
 			{

@@ -30,42 +30,28 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 
 
 void Crypto_Functions::decrypt_SBXC(std::string& hex){
-	int score,fscore = 0, hexLength = hex.length();
-	std::string aString;
-	std::cout << "made it" << std::endl;
-	std::vector<int> hexString{};
-	
-	hex_to_DEC(hex);	
+	int score = 0,fscore = 0, hexLength = hex.length();
+	std::string abuffer, fString;
+	hex_to_CHAR(hex);
 
-	try
-	{
-		std::cout << "Here" << std::endl;
-		for(unsigned int i = 0; i < 256; ++i){
-			for(unsigned int j = 0; j < this->asciiString.length(); ++j){
-				aString += (int)this->asciiString[j] ^ i;
-				std::cout << "Hello" << std::endl;
-			}	
-			for(unsigned int k = 0 ; k < aString.length(); ++k){
-				if(this->frequency_Map[aString[k]]){
-					score += this->frequency_Map[aString[k]];
-
-					std::cout << "cmon" << std::endl;
-				}
-			}
-			if(score > fscore)
-				fscore = score;
-			
-			score = 0;
-			std::cout << aString << std::endl;
-			aString.clear();
+	for(size_t i = 0; i < 256; ++i){
+		for(size_t j = 0; j < hex.size()/2; ++j){
+			abuffer += (int)this->asciiString[j] ^ i;
 		}
-
+		for(auto x : abuffer){
+			if(this->frequency_Map[x])
+				score += this->frequency_Map[x];
+				
+		}
+		if(score > fscore){
+			fscore =  score;
+			fString = abuffer;
+		}
+		
+		score = 0;
+		abuffer.clear();
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << "what?" << std::endl;
-		std::cerr << e.what() << '\n';
-	}
+	std::cout << "Singel Byte Decryptionn: " << fString << std::endl;
 }
 
 bool Crypto_Functions::hex_to_DEC(std::string& hexString){
@@ -82,6 +68,22 @@ bool Crypto_Functions::hex_to_DEC(std::string& hexString){
 	return true;
 }
 
+bool Crypto_Functions::hex_to_CHAR(std::string& hexString){
+	std::string part;
+	char asciiChar;
+
+	for(size_t i = 0; i < hexString.size(); i+=2){
+		part = hexString.substr(i,2);
+		asciiChar = std::stoull(part, nullptr, 16);
+		this->asciiString += asciiChar;
+	}
+	if(this->asciiString.size() != 0)
+		return true;
+	else 
+		return false;
+
+}
+
 
 //LOOK AT CCTYPE ISPRINT && ISBLANK FOR MORE INFO 
 bool Crypto_Functions::hex_to_ASCII(std::string& hexString)
@@ -91,7 +93,7 @@ bool Crypto_Functions::hex_to_ASCII(std::string& hexString)
 	for(size_t i = 0; i < hexString.size(); i+=2)
 	{
 		part = hexString.substr(i,2);
-		asciiChar = std::stoull(part, nullptr, 16);
+		asciiChar = std::stoul(part, nullptr, 16);
 		if(isprint(asciiChar) || isblank(asciiChar))
 		{
 			this->asciiString += asciiChar;
