@@ -35,28 +35,40 @@ letter_frequency = {'e':11,
 
 
 def xorCipher(hex):
+    fscore = 0
     score = 0 
     number = 0
-    result = ""
+    sbuffer = ''
+    result = ''
+
     #if new number is more than score, score = new number
 
-    for x in range(65,90):
-        for n in hex:
-            result += str(int(n,16) ^ x)
-            result += "1"
+    for i in range(0,256):
 
-        result = f'{int(result):x}'
-        #result.encode('ascii','replace')
+        for j in range(0,len(hex),2):
+            x = int(hex[j:j+2],16)
+            xor = x ^ i
+            sbuffer += chr(xor)
 
-        ascii_a = binascii.unhexlify(result)
-        #ascii_a = codecs.decode(result, 'hex', errors="ignore").decode("ASCII")
+        for k in range(len(sbuffer)):
+            if sbuffer[k] in letter_frequency:
+                score += letter_frequency[sbuffer[k]]
+
+        if score > fscore:
+            fscore = score
+            result = sbuffer
         
-        for a in ascii_a:            
-            if letter_frequency[n]:
-                number += letter_frequency[n]
+        score = 0
+        sbuffer = ""
+                    
+    print(result)    
+            
+            
+
         
-        if number > score:
-            score = number
+    
+        
+
 
 
 
