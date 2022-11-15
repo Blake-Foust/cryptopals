@@ -7,6 +7,7 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "base64_C.hpp"
 #include "crypto_Functions.hpp"
@@ -39,6 +40,17 @@ int main(int argc, char* argv[])
 		case 3:
 			{
 				cp.decrypt_SBXC(s1c3);
+				break;
+			}
+		case 4:
+			{
+				std::string fline;
+				std::ifstream file4;
+				file4.open("4.txt",std::ios::in);
+				while(std::getline(file4, fline))
+				{
+					cp.decrypt_SBXC(fline);
+				}
 				break;
 			}
 		default:

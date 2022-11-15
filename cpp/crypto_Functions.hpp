@@ -13,6 +13,8 @@ private:
 	std::vector<std::tuple<std::string, double, char>> decryptionScores;
 	std::string userValue1, userValue2;
         std::vector<unsigned int> hexV; 
+        unsigned int intbuffer = 0;
+        std::string sbuffer{};
 public:
 
 	Crypto_Functions();

@@ -2,6 +2,7 @@
  * Crypt Functions Class
  */
 
+#include <unistd.h>
 #include <iostream>
 #include <exception>
 #include <stdlib.h>
@@ -51,7 +52,18 @@ void Crypto_Functions::decrypt_SBXC(std::string& hex){
 		score = 0;
 		abuffer.clear();
 	}
-	std::cout << "Singel Byte Decryptionn: " << fString << std::endl;
+
+
+	if(fscore > this->intbuffer){
+		this->intbuffer = fscore;
+		this->sbuffer = fString;
+		std::cout << "Single Byte Decryption: \n" << this->sbuffer << std::endl;
+		std::cout << "Score of Decryption" << this->intbuffer << std::endl;
+	}
+
+	this->asciiString.clear();	
+
+	//sleep(1);	
 }
 
 bool Crypto_Functions::hex_to_DEC(std::string& hexString){
