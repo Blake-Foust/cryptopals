@@ -15,6 +15,7 @@ private:
         std::vector<unsigned int> hexV; 
         unsigned int intbuffer = 0;
         std::string sbuffer{};
+        std::string ice = "ICE";
 public:
 
 	Crypto_Functions();
@@ -28,7 +29,9 @@ public:
         std::string xorHexS(std::string& hexString1, std::string& hexString2);
 	void Hex_Check(std::string& hexString);
 	void decrypt_SBXC(std::string&);
-	std::map<char, double> frequency_Map{
+	void repeat_XOR(std::string&);
+        void dec_to_hex(std::string&);
+        std::map<char, double> frequency_Map{
                 {' ', 13.00},
                 {'a', 8.56},
                 {'b', 2.03},
@@ -83,6 +86,7 @@ public:
                 {'Y', 1.65},
                 {'Z', 0.09}
         };
+
 };
 
 

@@ -18,6 +18,7 @@ std::string s1c1 = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120
 std::string s1c21 = "1c0111001f010100061a024b53535009181c";
 std::string s1c22 = "686974207468652062756c6c277320657965";
 std::string s1c3 = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736";
+std::string s1c5 = "Burning 'em, if you ain't quick and nimble I go crazy when I hear a cymbal";
 
 int main(int argc, char* argv[])
 {
@@ -51,6 +52,11 @@ int main(int argc, char* argv[])
 				{
 					cp.decrypt_SBXC(fline);
 				}
+				break;
+			}
+		case 5:
+			{
+				cp.repeat_XOR(s1c5);
 				break;
 			}
 		default:

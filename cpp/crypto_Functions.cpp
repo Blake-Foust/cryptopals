@@ -15,6 +15,10 @@
 #include <cctype>
 #include "crypto_Functions.hpp"
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 Crypto_Functions::Crypto_Functions(){};
 
 Crypto_Functions::Crypto_Functions(std::string& userInput1)
@@ -29,6 +33,28 @@ bool Crypto_Functions::equal_size(T var1, U var2)
 	return (var1.size() == var2.size());
 }
 
+void Crypto_Functions::repeat_XOR(std::string& s){
+	std::string rString;
+	for(int i = 0; i < s.size(); ++i){
+		rString += (int)s[i] ^ (int)this->ice[i%3];	
+	}
+
+	//std::cout << rString << std::endl;
+	dec_to_hex(rString);
+	
+
+}
+
+void Crypto_Functions::dec_to_hex(std::string& dec){
+	std::stringstream x;
+	std::string rx;
+	for(int i = 0; i < dec.size(); ++i){
+		x << std::hex << (unsigned int)dec[i];
+		rx += x.str();
+		x.str("");
+	}
+	cout << rx << endl;
+}
 
 void Crypto_Functions::decrypt_SBXC(std::string& hex){
 	int score = 0,fscore = 0, hexLength = hex.length();
